@@ -18,11 +18,15 @@ http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%201%20%3A%0AGetting%20S
 
 const { waitFor10Ms } = require('../utils')
 
+const dummy = () => {}
+
 const YOUR_CODE_HERE = (done) => {
-  waitFor10Ms().then((success) => done(success))
+  dummy()
+  waitFor10Ms().then(success => done(success))
 }
 
 module.exports = {
   waitFor10Ms,
+  dummy,
   YOUR_CODE_HERE,
 }
