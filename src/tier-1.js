@@ -15,3 +15,14 @@
 
 http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%201%20%3A%0AGetting%20Started
 */
+
+const { waitFor10Ms } = require('../utils')
+
+const YOUR_CODE_HERE = (done) => {
+  waitFor10Ms().then((success) => done(success))
+}
+
+module.exports = {
+  waitFor10Ms,
+  YOUR_CODE_HERE,
+}
