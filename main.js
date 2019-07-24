@@ -8,5 +8,5 @@ console.log(blue('hello there im blue'))
 console.log(cyan('hello there im cyan'))
 console.log(magenta('hello there im magenta'))
 
-rainbow('Congratulations! 🎉 Move on to the next level.')
+rainbow('🎉 Congratulations! Move on to the next level. 📈')
 setTimeout(() => console.log(''), 2000)
