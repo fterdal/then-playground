@@ -2,6 +2,7 @@
 const chai = require('chai')
 const sinon = require('sinon')
 const sinonChai = require('sinon-chai')
+const { rainbow } = require('chalk-animation')
 
 chai.use(sinonChai)
 const { expect } = chai
@@ -58,8 +59,9 @@ describe('Tier 1: Getting Started', () => {
       expect(finished).to.not.be.called
       expect(handleError).to.be.called
       expect(handleError).to.be.calledWithMatch({
-        message: 'OH NO'
+        message: 'OH NO',
       })
+      rainbow('Congratulations! Move on to the next level.')
       done()
     }, 20)
   })

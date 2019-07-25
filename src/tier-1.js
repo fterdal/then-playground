@@ -29,13 +29,13 @@ const YOUR_CODE_HERE = async () => {
   // }
 
   // THEN
-  // waitFor()
-  //   .then(() => {
-  //     finished()
-  //   })
-  //   .catch(err => {
-  //     handleError(err)
-  //   })
+  waitFor()
+    .then(() => {
+      finished()
+    })
+    .catch(err => {
+      handleError(err)
+    })
 
 }
 
