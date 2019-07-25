@@ -22,7 +22,10 @@ const dummy = () => {}
 
 const YOUR_CODE_HERE = (done) => {
   dummy()
-  waitFor10Ms().then(success => done(success))
+  waitFor10Ms().then(success => {
+    console.log('done!!')
+    done(success)
+  })
 }
 
 module.exports = {

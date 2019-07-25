@@ -5,10 +5,10 @@ const genericPromiseFn = (waitForMs, payload, throwError = false) =>
   })
 
 const fulfillAfterMs = (waitForMs, payload) =>
-  genericPromiseFn(payload, waitForMs)
+  genericPromiseFn(waitForMs, payload)
 
 const rejectAfterMs = (waitForMs, error) =>
-  genericPromiseFn(undefined, waitForMs, error)
+  genericPromiseFn(waitForMs, undefined, error)
 
 const requireArgument = (correctArg, waitForMs, payload, error) => {
   return arg => {
@@ -19,7 +19,11 @@ const requireArgument = (correctArg, waitForMs, payload, error) => {
   }
 }
 
-const waitFor10Ms = () => fulfillAfterMs(10, 'signal clearance!')
+const waitFor10Ms = () => fulfillAfterMs(10)
+
+const promiseRecord = {
+  count: 0,
+}
 
 module.exports = {
   genericPromiseFn,
@@ -27,4 +31,5 @@ module.exports = {
   rejectAfterMs,
   requireArgument,
   waitFor10Ms,
+  promiseRecord,
 }

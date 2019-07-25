@@ -8,7 +8,7 @@ const { expect } = chai
 
 const Tier1 = require('../src/tier-1')
 const { dummy, YOUR_CODE_HERE } = Tier1
-const { waitFor10Ms } = require('../utils')
+const { waitFor10Ms, promiseRecord } = require('../utils')
 
 console.clear()
 describe('Tier 1: Getting Started', () => {
@@ -23,15 +23,11 @@ describe('Tier 1: Getting Started', () => {
 
     it('is called', done => {
       YOUR_CODE_HERE(spyDone)
+      expect(spyDone).to.not.be.called
       setTimeout(() => {
-        expect(spyDone).to.not.be.called
-        console.log(mockDummy)
-        const expectedCalls = mockDummy.expects('dummy').once()
-        expectedCalls.verify()
-        // expect(mockDummy).to.be.called
-        // expect(spyWaitFor).to.be.called
+        expect(spyDone).to.be.called
         done()
-      }, 250)
+      }, 20)
     })
   })
 })
