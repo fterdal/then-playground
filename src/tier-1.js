@@ -16,14 +16,11 @@
 http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%201%20%3A%0AGetting%20Started
 */
 
-// const { waitFor, promiseRecord } = require('../utils')
-const utils = require('../utils')
-const { waitFor, promiseRecord } = utils
+const { waitFor, finished } = require('../utils')
 
-const YOUR_CODE_HERE = done => {
-  promiseRecord.count = 100
+const YOUR_CODE_HERE = () => {
   waitFor().then(() => {
-    done()
+    finished()
   })
 }
 
