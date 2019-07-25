@@ -1,3 +1,9 @@
+const promiseRecord = {
+  waitFor: {
+    timesCalled: [],
+  },
+}
+
 const genericPromiseFn = (waitForMs, payload, throwError = false) =>
   new Promise((resolve, reject) => {
     if (throwError !== false) return reject(throwError)
@@ -19,10 +25,14 @@ const requireArgument = (correctArg, waitForMs, payload, error) => {
   }
 }
 
-const waitFor = () => fulfillAfterMs(10)
-
-const promiseRecord = {
-  count: 0,
+const waitFor = () => {
+  const start = new Date()
+  return fulfillAfterMs(10).finally(() => {
+    promiseRecord.waitFor.timesCalled.push({
+      start,
+      finish: new Date()
+    })
+  })
 }
 
 module.exports = {
