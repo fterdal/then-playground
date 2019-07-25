@@ -21,11 +21,9 @@ const { waitFor, finished, handleError } = require('../utils')
 const YOUR_CODE_HERE = () => {
   waitFor()
     .then(() => {
-      console.log('SUCCESS')
       finished()
     })
     .catch(() => {
-      console.log('ERROR')
       handleError()
     })
 }

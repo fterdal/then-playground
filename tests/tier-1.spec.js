@@ -8,7 +8,7 @@ const { expect } = chai
 
 const { YOUR_CODE_HERE } = require('../src/tier-1')
 const utils = require('../utils')
-const { waitFor, waitForErr, finished } = utils
+const { waitFor, finished, handleError, promisesData } = utils
 
 console.clear()
 describe('Tier 1: Getting Started', () => {
@@ -35,13 +35,13 @@ describe('Tier 1: Getting Started', () => {
   })
 
   it('calls handleError() if an error occurs', done => {
-    sinon.replace(utils, 'waitFor', waitForErr)
+    // sinon.replace(utils, 'waitFor', waitForErr)
+    promisesData.shouldError = true
     YOUR_CODE_HERE()
     setTimeout(() => {
-      expect(finished).to.be.called
+      expect(finished).to.not.be.called
+      expect(handleError).to.be.called
       done()
     }, 20)
-    // const utilsMock = sinon.mock(utils)
-    // ¯\_(ツ)_/¯
   })
 })

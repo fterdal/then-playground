@@ -21,8 +21,17 @@ const requireArgument = (correctArg, waitForMs, payload, error) => {
   }
 }
 
-const waitFor = () => fulfillAfterMs(10)
-const waitForErr = () => rejectAfterMs(10, new Error('something went wrong!'))
+const promisesData = {
+  shouldError: false,
+}
+
+const waitFor = () => {
+  if (promisesData.shouldError) {
+    return rejectAfterMs(10, new Error('OH NO'))
+  }
+  return fulfillAfterMs(10)
+}
+// const waitForErr = () => rejectAfterMs(10, new Error('something went wrong!'))
 
 module.exports = {
   genericPromiseFn: fake(genericPromiseFn),
@@ -30,7 +39,7 @@ module.exports = {
   rejectAfterMs: fake(rejectAfterMs),
   requireArgument: fake(requireArgument),
   waitFor: fake(waitFor),
-  waitForErr: fake(waitForErr),
   finished: fake(),
   handleError: fake(),
+  promisesData,
 }
