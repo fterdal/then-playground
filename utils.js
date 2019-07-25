@@ -19,7 +19,7 @@ const requireArgument = (correctArg, waitForMs, payload, error) => {
   }
 }
 
-const waitFor10Ms = () => fulfillAfterMs(10)
+const waitFor = () => fulfillAfterMs(10)
 
 const promiseRecord = {
   count: 0,
@@ -30,6 +30,6 @@ module.exports = {
   fulfillAfterMs,
   rejectAfterMs,
   requireArgument,
-  waitFor10Ms,
+  waitFor,
   promiseRecord,
 }

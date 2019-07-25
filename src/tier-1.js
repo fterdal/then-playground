@@ -16,20 +16,17 @@
 http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%201%20%3A%0AGetting%20Started
 */
 
-const { waitFor10Ms } = require('../utils')
+// const { waitFor, promiseRecord } = require('../utils')
+const utils = require('../utils')
+const { waitFor, promiseRecord } = utils
 
-const dummy = () => {}
-
-const YOUR_CODE_HERE = (done) => {
-  dummy()
-  waitFor10Ms().then(success => {
-    console.log('done!!')
-    done(success)
+const YOUR_CODE_HERE = done => {
+  promiseRecord.count = 100
+  waitFor().then(() => {
+    done()
   })
 }
 
 module.exports = {
-  waitFor10Ms,
-  dummy,
   YOUR_CODE_HERE,
 }
