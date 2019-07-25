@@ -8,13 +8,19 @@ const { expect } = chai
 
 const { YOUR_CODE_HERE } = require('../src/tier-1')
 const utils = require('../utils')
-const { waitFor, finished, handleError, promisesData } = utils
+const {
+  waitFor,
+  finished,
+  handleError,
+  promisesShouldFulfill,
+  promisesShouldReject,
+} = utils
 
-console.clear()
 describe('Tier 1: Getting Started', () => {
   afterEach(() => {
     sinon.reset()
     // sinon.restore()
+    promisesShouldFulfill()
   })
 
   it('calls waitFor', () => {
@@ -35,12 +41,25 @@ describe('Tier 1: Getting Started', () => {
   })
 
   it('calls handleError() if an error occurs', done => {
-    // sinon.replace(utils, 'waitFor', waitForErr)
-    promisesData.shouldError = true
+    promisesShouldReject()
+    YOUR_CODE_HERE()
+    expect(handleError).to.not.be.called
+    setTimeout(() => {
+      expect(finished).to.not.be.called
+      expect(handleError).to.be.called
+      done()
+    }, 20)
+  })
+
+  it('pass the error to handleError()', done => {
+    promisesShouldReject()
     YOUR_CODE_HERE()
     setTimeout(() => {
       expect(finished).to.not.be.called
       expect(handleError).to.be.called
+      expect(handleError).to.be.calledWithMatch({
+        message: 'OH NO'
+      })
       done()
     }, 20)
   })

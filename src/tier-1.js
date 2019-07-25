@@ -23,8 +23,8 @@ const YOUR_CODE_HERE = () => {
     .then(() => {
       finished()
     })
-    .catch(() => {
-      handleError()
+    .catch(err => {
+      handleError(err)
     })
 }
 
