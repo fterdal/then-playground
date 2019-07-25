@@ -1,3 +1,5 @@
+const { spy } = require('sinon')
+
 const promiseRecord = {
   waitFor: {
     timesCalled: [],
@@ -25,21 +27,23 @@ const requireArgument = (correctArg, waitForMs, payload, error) => {
   }
 }
 
-const waitFor = () => {
-  const start = new Date()
-  return fulfillAfterMs(10).finally(() => {
-    promiseRecord.waitFor.timesCalled.push({
-      start,
-      finish: new Date()
-    })
-  })
-}
+const waitFor = () => fulfillAfterMs(10)
+
+// const waitFor = () => {
+//   const start = new Date()
+//   return fulfillAfterMs(10).finally(() => {
+//     promiseRecord.waitFor.timesCalled.push({
+//       start,
+//       finish: new Date()
+//     })
+//   })
+// }
 
 module.exports = {
-  genericPromiseFn,
-  fulfillAfterMs,
-  rejectAfterMs,
-  requireArgument,
-  waitFor,
+  genericPromiseFn: spy(genericPromiseFn),
+  fulfillAfterMs: spy(fulfillAfterMs),
+  rejectAfterMs: spy(rejectAfterMs),
+  requireArgument: spy(requireArgument),
+  waitFor: spy(waitFor),
   promiseRecord,
 }
