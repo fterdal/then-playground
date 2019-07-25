@@ -16,26 +16,17 @@
 http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%201%20%3A%0AGetting%20Started
 */
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * waitFor: takes no arguments, returns a promise that resolves after 10 milliseconds
+ * finished: takes no arguments, call it when waitFor finishes successfully (fulfills)
+ * handleError: takes one argument, call it with an error if waitFor rejects
+ */
+
 const { waitFor, finished, handleError } = require('../utils')
 
-const YOUR_CODE_HERE = async () => {
-
-  // AWAIT
-  // try {
-  //   await waitFor()
-  //   finished()
-  // } catch (err) {
-  //   handleError(err)
-  // }
-
-  // THEN
-  waitFor()
-    .then(() => {
-      finished()
-    })
-    .catch(err => {
-      handleError(err)
-    })
+const YOUR_CODE_HERE = () => {
+  // Write your code here inside this function. You only need the
+  // three functions above to pass the tests. Good luck!
 
 }
 

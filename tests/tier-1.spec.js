@@ -24,13 +24,13 @@ describe('Tier 1: Getting Started', () => {
     promisesShouldFulfill()
   })
 
-  it('calls waitFor', () => {
+  xit('calls waitFor', () => {
     expect(waitFor).to.not.be.called
     YOUR_CODE_HERE()
     expect(waitFor).to.be.called
   })
 
-  it('calls finished() only after waitFor is resolved', done => {
+  xit('calls finished() only after waitFor is resolved', done => {
     expect(waitFor).to.not.be.called
     YOUR_CODE_HERE()
     expect(finished).to.not.be.called
@@ -41,7 +41,7 @@ describe('Tier 1: Getting Started', () => {
     }, 20)
   })
 
-  it('calls handleError() if an error occurs', done => {
+  xit('calls handleError() if an error occurs', done => {
     promisesShouldReject()
     YOUR_CODE_HERE()
     expect(handleError).to.not.be.called
@@ -52,7 +52,7 @@ describe('Tier 1: Getting Started', () => {
     }, 20)
   })
 
-  it('pass the error to handleError()', done => {
+  xit('pass the error to handleError()', done => {
     promisesShouldReject()
     YOUR_CODE_HERE()
     setTimeout(() => {
