@@ -16,11 +16,15 @@
 http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%201%20%3A%0AGetting%20Started
 */
 
-const { waitFor, finished } = require('../utils')
+const { waitFor, finished, handleError } = require('../utils')
 
 const YOUR_CODE_HERE = () => {
-  waitFor().then(() => {
+  waitFor()
+  .then(() => {
     finished()
+  })
+  .catch(() => {
+    handleError()
   })
 }
 

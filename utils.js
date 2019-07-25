@@ -1,4 +1,4 @@
-const { spy } = require('sinon')
+const { fake } = require('sinon')
 
 const genericPromiseFn = (waitForMs, payload, throwError = false) =>
   new Promise((resolve, reject) => {
@@ -24,10 +24,11 @@ const requireArgument = (correctArg, waitForMs, payload, error) => {
 const waitFor = () => fulfillAfterMs(10)
 
 module.exports = {
-  genericPromiseFn: spy(genericPromiseFn),
-  fulfillAfterMs: spy(fulfillAfterMs),
-  rejectAfterMs: spy(rejectAfterMs),
-  requireArgument: spy(requireArgument),
-  waitFor: spy(waitFor),
-  finished: spy(),
+  genericPromiseFn: fake(genericPromiseFn),
+  fulfillAfterMs: fake(fulfillAfterMs),
+  rejectAfterMs: fake(rejectAfterMs),
+  requireArgument: fake(requireArgument),
+  waitFor: fake(waitFor),
+  finished: fake(),
+  handleError: fake(),
 }

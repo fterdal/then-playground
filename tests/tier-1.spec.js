@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 const chai = require('chai')
-const { spy } = require('sinon')
+const sinon = require('sinon')
 const sinonChai = require('sinon-chai')
 
 chai.use(sinonChai)
@@ -12,27 +12,29 @@ const { waitFor, finished } = utils
 
 console.clear()
 describe('Tier 1: Getting Started', () => {
-  describe('Your Code', () => {
-    afterEach(() => {
-      waitFor.resetHistory()
-      finished.resetHistory()
-    })
+  afterEach(() => {
+    sinon.reset()
+    // sinon.restore()
+  })
 
-    it('calls waitFor', () => {
-      expect(waitFor).to.not.be.called
-      YOUR_CODE_HERE()
-      expect(waitFor).to.be.called
-    })
+  it('calls waitFor', () => {
+    expect(waitFor).to.not.be.called
+    YOUR_CODE_HERE()
+    expect(waitFor).to.be.called
+  })
 
-    it('calls finished() only after waitFor is resolved', done => {
-      expect(waitFor).to.not.be.called
-      YOUR_CODE_HERE()
-      expect(finished).to.not.be.called
-      expect(waitFor).to.be.called
-      setTimeout(() => {
-        expect(finished).to.be.called
-        done()
-      }, 20)
-    })
+  it('calls finished() only after waitFor is resolved', done => {
+    expect(waitFor).to.not.be.called
+    YOUR_CODE_HERE()
+    expect(finished).to.not.be.called
+    expect(waitFor).to.be.called
+    setTimeout(() => {
+      expect(finished).to.be.called
+      done()
+    }, 20)
+  })
+
+  it('calls handleError() if an error occurs', () => {
+    // ¯\_(ツ)_/¯
   })
 })
