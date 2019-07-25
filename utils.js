@@ -1,4 +1,6 @@
 const { fake } = require('sinon')
+const { karaoke } = require('chalk-animation')
+const { blue } = require('chalk')
 
 const genericPromiseFn = (waitForMs, payload, throwError = false) =>
   new Promise((resolve, reject) => {
@@ -40,6 +42,10 @@ const waitFor = () => {
   return fulfillAfterMs(10)
 }
 
+const crayonDraw = (text, color = 'blue') => {
+  return fulfillAfterMs(250).then(() => console.log(blue(text)))
+}
+
 module.exports = {
   genericPromiseFn: fake(genericPromiseFn),
   fulfillAfterMs: fake(fulfillAfterMs),
@@ -50,4 +56,5 @@ module.exports = {
   handleError: fake(),
   promisesShouldFulfill,
   promisesShouldReject,
+  crayonDraw: fake(crayonDraw),
 }

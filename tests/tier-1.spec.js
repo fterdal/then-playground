@@ -61,7 +61,7 @@ describe('Tier 1: Getting Started', () => {
       expect(handleError).to.be.calledWithMatch({
         message: 'OH NO',
       })
-      rainbow('Congratulations! Move on to the next level.')
+      rainbow('Congratulations! Move on to the next tier.')
       done()
     }, 20)
   })

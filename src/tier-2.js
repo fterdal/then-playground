@@ -15,3 +15,23 @@
 
 http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%202%3A%0ASequential
 */
+
+const { crayonDraw, finished, handleError } = require('../utils')
+
+const YOUR_CODE_HERE = () => {
+  // THEN
+  crayonDraw('ONE')
+    .then(() => {
+      return crayonDraw('TWO')
+    })
+    .then(() => {
+      return crayonDraw('THREE')
+    })
+    .then(() => {
+      return crayonDraw('FOUR')
+    })
+}
+
+module.exports = {
+  YOUR_CODE_HERE,
+}
