@@ -20,8 +20,10 @@ const genericPromiseFn = (waitForMs, payload, throwError = false) =>
 const fulfillAfterMs = (waitForMs, payload = 'SOME DATA') =>
   genericPromiseFn(waitForMs, payload)
 
-const rejectAfterMs = (waitForMs, error = new Error('OH NO')) =>
-  genericPromiseFn(waitForMs, undefined, error)
+const rejectAfterMs = (
+  waitForMs,
+  error = new Error('oopsies, something broke')
+) => genericPromiseFn(waitForMs, undefined, error)
 
 const requireArgument = (correctArg, waitForMs, payload, error) => {
   return arg => {
@@ -55,18 +57,17 @@ const handleError = err => {
   console.log(dim('Successfully handled this error: ') + dim(red(err.message)))
 }
 
-/**
- * Have it take an argument: blue, magenta, yellow, green, cyan, white
- * and it writes out the name of that color in that color.
- *
- * When it starts, it pushes the information onto an array in this file,
- * recording each time one of these crayonDraws is called.
- */
-const crayonDraws = []
+let crayonDraws = []
+const resetCrayonDraws = () => {
+  crayonDraws = []
+}
 const crayonDraw = (color = 'white') => {
   const getColor = { blue, white, magenta, yellow, green, cyan, red }[color]
   if (typeof getColor !== 'function') {
     throw new Error(`Couldn't find ${color} crayon`)
+  }
+  if (promisesData.shouldError && color === 'green') {
+    throw new Error('Uh oh, the green crayon broke!')
   }
   crayonDraws.push({
     start: new Date(),
@@ -87,4 +88,5 @@ module.exports = {
   promisesShouldReject,
   crayonDraw: fake(crayonDraw),
   crayonDraws,
+  resetCrayonDraws,
 }

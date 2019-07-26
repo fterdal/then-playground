@@ -9,11 +9,20 @@ const { expect } = chai
 
 const { YOUR_CODE_HERE } = require('../src/tier-2')
 const utils = require('../utils')
-const { crayonDraw, handleError, crayonDraws } = utils
+const {
+  crayonDraw,
+  handleError,
+  crayonDraws,
+  resetCrayonDraws,
+  promisesShouldFulfill,
+  promisesShouldReject,
+} = utils
 
 describe('Tier 2: Sequential', () => {
   afterEach(() => {
     sinon.reset()
+    resetCrayonDraws()
+    promisesShouldFulfill()
   })
 
   it('calls crayonDraw four times', done => {
@@ -25,7 +34,7 @@ describe('Tier 2: Sequential', () => {
     }, 850)
   })
 
-  it('calls crayonDraw with args [blue, green, magenta, yellow] in that order', done => {
+  it('calls crayonDraw with blue, green, magenta, and yellow (in that order)', done => {
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
@@ -48,6 +57,23 @@ describe('Tier 2: Sequential', () => {
         const prevStart = crayonDraws[idx - 1].start
         expect(start - prevStart).to.be.greaterThan(199)
       })
+      done()
+    }, 850)
+  })
+
+  it('calls handleError with any errors that occur & skip all following crayonDraws', done => {
+    expect(crayonDraw).to.not.be.called
+    promisesShouldReject()
+    YOUR_CODE_HERE()
+    setTimeout(() => {
+      expect(crayonDraw).callCount(2)
+      expect(crayonDraw.getCall(0).args[0]).to.equal('blue')
+      expect(crayonDraw.getCall(1).args[0]).to.equal('green')
+      expect(handleError).to.be.called
+      expect(handleError).to.be.calledWithMatch({
+        message: 'Uh oh, the green crayon broke!',
+      })
+      rainbow('Congratulations! Move on to Tier 3.')
       done()
     }, 850)
   })

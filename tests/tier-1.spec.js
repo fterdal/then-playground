@@ -17,7 +17,7 @@ const {
   promisesShouldReject,
 } = utils
 
-describe.only('Tier 1: Getting Started', () => {
+describe('Tier 1: Getting Started', () => {
   afterEach(() => {
     sinon.reset()
     // sinon.restore()
@@ -59,9 +59,9 @@ describe.only('Tier 1: Getting Started', () => {
       expect(finished).to.not.be.called
       expect(handleError).to.be.called
       expect(handleError).to.be.calledWithMatch({
-        message: 'OH NO',
+        message: 'oopsies, something broke',
       })
-      rainbow('Congratulations! Move on to the next tier.')
+      rainbow('Congratulations! Move on to Tier 2.')
       done()
     }, 20)
   })

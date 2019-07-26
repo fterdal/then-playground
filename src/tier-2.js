@@ -24,7 +24,7 @@ const YOUR_CODE_HERE = () => {
   // crayonDraw('green')
   // crayonDraw('magenta')
   // crayonDraw('yellow')
-  return crayonDraw('blue')
+  crayonDraw('blue')
     .then(() => {
       return crayonDraw('green')
     })
