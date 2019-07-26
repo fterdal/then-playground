@@ -55,7 +55,7 @@ describe('Tier 2: Sequential', () => {
       crayonDraws.forEach(({ start }, idx) => {
         if (!idx) return
         const prevStart = crayonDraws[idx - 1].start
-        expect(start - prevStart).to.be.greaterThan(199)
+        expect(start - prevStart).to.be.greaterThan(190)
       })
       done()
     }, 850)
