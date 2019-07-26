@@ -24,7 +24,7 @@ http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%201%20%3A%0AGetting%20S
 
 const { waitFor, finished, handleError } = require('../utils')
 
-function YOUR_CODE_HERE() {
+const YOUR_CODE_HERE = () => {
   // AWAIT
   // try {
   //   await waitFor()
