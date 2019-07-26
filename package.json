@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon main",
-    "test": "mocha -w tests"
+    "test": "mocha -w tests",
+    "tier-1": "mocha -w tests/tier-1.spec",
+    "tier-2": "mocha -w tests/tier-2.spec"
   },
   "keywords": [],
   "author": "",

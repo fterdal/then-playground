@@ -1,4 +1,5 @@
 const { fake } = require('sinon')
+const { blue, white, magenta, yellow, green, cyan, red, dim } = require('chalk')
 
 const genericPromiseFn = (waitForMs, payload, throwError = false) =>
   new Promise((resolve, reject) => {
@@ -9,8 +10,10 @@ const genericPromiseFn = (waitForMs, payload, throwError = false) =>
 const fulfillAfterMs = (waitForMs, payload = 'SOME DATA') =>
   genericPromiseFn(waitForMs, payload)
 
-const rejectAfterMs = (waitForMs, error = new Error('OH NO')) =>
-  genericPromiseFn(waitForMs, undefined, error)
+const rejectAfterMs = (
+  waitForMs,
+  error = new Error('oopsies, something broke')
+) => genericPromiseFn(waitForMs, undefined, error)
 
 const requireArgument = (correctArg, waitForMs, payload, error) => {
   return arg => {
@@ -40,6 +43,29 @@ const waitFor = () => {
   return fulfillAfterMs(10)
 }
 
+const handleError = err => {
+  console.log(dim('Successfully handled this error: ') + dim(red(err.message)))
+}
+
+let crayonDraws = []
+const resetCrayonDraws = () => {
+  crayonDraws = []
+}
+const crayonDraw = (color = 'white') => {
+  const getColor = { blue, white, magenta, yellow, green, cyan, red }[color]
+  if (typeof getColor !== 'function') {
+    throw new Error(`Couldn't find ${color} crayon`)
+  }
+  if (promisesData.shouldError && color === 'green') {
+    throw new Error('Uh oh, the green crayon broke!')
+  }
+  crayonDraws.push({
+    start: new Date(),
+    color,
+  })
+  return fulfillAfterMs(200).then(() => console.log(getColor(color)))
+}
+
 module.exports = {
   genericPromiseFn: fake(genericPromiseFn),
   fulfillAfterMs: fake(fulfillAfterMs),
@@ -47,7 +73,10 @@ module.exports = {
   requireArgument: fake(requireArgument),
   waitFor: fake(waitFor),
   finished: fake(),
-  handleError: fake(),
+  handleError: fake(handleError),
   promisesShouldFulfill,
   promisesShouldReject,
+  crayonDraw: fake(crayonDraw),
+  crayonDraws,
+  resetCrayonDraws,
 }
