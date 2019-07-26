@@ -25,6 +25,19 @@ describe('Tier 2: Sequential', () => {
     }, 850)
   })
 
+  it('calls crayonDraw with args [blue, green, magenta, yellow] in that order', done => {
+    expect(crayonDraw).to.not.be.called
+    YOUR_CODE_HERE()
+    setTimeout(() => {
+      expect(crayonDraw).callCount(4)
+      expect(crayonDraw.getCall(0).args[0]).to.equal('blue')
+      expect(crayonDraw.getCall(1).args[0]).to.equal('green')
+      expect(crayonDraw.getCall(2).args[0]).to.equal('magenta')
+      expect(crayonDraw.getCall(3).args[0]).to.equal('yellow')
+      done()
+    }, 850)
+  })
+
   it('successive calls to crayonDraw only after the previous one resolves', done => {
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()

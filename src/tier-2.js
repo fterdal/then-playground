@@ -20,21 +20,21 @@ const { crayonDraw, finished, handleError } = require('../utils')
 
 const YOUR_CODE_HERE = () => {
   // THEN
-  // crayonDraw()
-  // crayonDraw()
-  // crayonDraw()
-  // crayonDraw()
-  return crayonDraw()
+  // crayonDraw('blue')
+  // crayonDraw('green')
+  // crayonDraw('magenta')
+  // crayonDraw('yellow')
+  return crayonDraw('blue')
     .then(() => {
-      return crayonDraw()
+      return crayonDraw('green')
     })
     .then(() => {
-      return crayonDraw()
+      return crayonDraw('magenta')
     })
     .then(() => {
-      return crayonDraw()
+      return crayonDraw('yellow')
     })
-    .catch((err) => {
+    .catch(err => {
       handleError(err)
     })
 }
