@@ -34,6 +34,9 @@ const YOUR_CODE_HERE = () => {
     .then(() => {
       return crayonDraw()
     })
+    .catch((err) => {
+      handleError(err)
+    })
 }
 
 module.exports = {

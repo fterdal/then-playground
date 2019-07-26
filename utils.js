@@ -1,5 +1,5 @@
 const { fake } = require('sinon')
-const { blue, white, magenta, yellow, green, cyan, red } = require('chalk')
+const { blue, white, magenta, yellow, green, cyan, red, gray } = require('chalk')
 
 const genericPromiseFn = (waitForMs, payload, throwError = false) =>
   new Promise((resolve, reject) => {
@@ -41,6 +41,10 @@ const waitFor = () => {
   return fulfillAfterMs(10)
 }
 
+const handleError = (err) => {
+  console.log(gray("Successfully handled this error: ") + red(err.message))
+}
+
 /**
  * Have it take an argument: blue, magenta, yellow, green, cyan, white
  * and it writes out the name of that color in that color.
@@ -51,6 +55,9 @@ const waitFor = () => {
 const crayonDraws = []
 const crayonDraw = (color = 'white') => {
   const getColor = { blue, white, magenta, yellow, green, cyan, red }[color]
+  if (typeof getColor !== 'function') {
+    throw new Error(`Couldn't find ${color} crayon`)
+  }
   crayonDraws.push({
     start: new Date(),
     color,
@@ -65,7 +72,7 @@ module.exports = {
   requireArgument: fake(requireArgument),
   waitFor: fake(waitFor),
   finished: fake(),
-  handleError: fake(),
+  handleError: fake(handleError),
   promisesShouldFulfill,
   promisesShouldReject,
   crayonDraw: fake(crayonDraw),
