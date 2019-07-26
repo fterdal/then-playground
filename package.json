@@ -7,7 +7,8 @@
     "start": "nodemon main",
     "test": "mocha -w tests",
     "tier-1": "mocha -w tests/tier-1.spec",
-    "tier-2": "mocha -w tests/tier-2.spec"
+    "tier-2": "mocha -w tests/tier-2.spec",
+    "tier-3": "mocha -w tests/tier-3.spec"
   },
   "keywords": [],
   "author": "",

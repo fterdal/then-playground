@@ -51,19 +51,32 @@ let crayonDraws = []
 const resetCrayonDraws = () => {
   crayonDraws = []
 }
+
+// Returns true if there is still a crayon draw going on that hasn't ended yet
+const stillDrawing = () => {
+  if (crayonDraws.length === 0) return false
+  return crayonDraws.filter(draw => draw.end).length === 0
+}
+
 const crayonDraw = (color = 'white') => {
-  const getColor = { blue, white, magenta, yellow, green, cyan, red }[color]
-  if (typeof getColor !== 'function') {
+  const logColor = { blue, white, magenta, yellow, green, cyan, red }[color]
+  if (typeof logColor !== 'function') {
     throw new Error(`Couldn't find ${color} crayon`)
   }
   if (promisesData.shouldError && color === 'green') {
     throw new Error('Uh oh, the green crayon broke!')
   }
+  const promiseId = Math.floor(Math.random() * 1000000)
   crayonDraws.push({
+    id: promiseId,
     start: new Date(),
+    end: null,
     color,
   })
-  return fulfillAfterMs(200).then(() => console.log(getColor(color)))
+  return fulfillAfterMs(200).then(() => {
+    console.log(logColor(color))
+    crayonDraws.find(draw => draw.id === promiseId).end = new Date()
+  })
 }
 
 module.exports = {
@@ -79,4 +92,5 @@ module.exports = {
   crayonDraw: fake(crayonDraw),
   crayonDraws,
   resetCrayonDraws,
+  stillDrawing,
 }
