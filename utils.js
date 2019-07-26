@@ -79,6 +79,21 @@ const similarStartingTime = promiseId => {
   )
 }
 
+/**
+ * THE GOAL right now is to find a way to log crayonDraws that start at the same
+ * time adjacent to one another, while those that start later are logged on separate lines
+ * So, if blue and green are concurrent, then magenta and yellow are concurrent,
+ * then cyan comes last, it would look like this on the terminal:
+ * blue green
+ * magenta yellow
+ * cyan
+ *
+ * THE APPROACH is to keep track of when each of these promises starts. And when
+ * logging a color, first check to see if any others started at a similar time.
+ * If there's a similarly-timed color, log without a newline. If not, begin with
+ * a newline.
+ */
+
 const crayonDraw = (color = 'white') => {
   const logColor = { blue, white, magenta, yellow, green, cyan, red }[color]
   if (typeof logColor !== 'function') {
