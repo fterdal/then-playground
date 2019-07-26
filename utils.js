@@ -1,5 +1,15 @@
 const { fake } = require('sinon')
-const { blue, white, magenta, yellow, green, cyan, red, gray } = require('chalk')
+const {
+  blue,
+  white,
+  magenta,
+  yellow,
+  green,
+  cyan,
+  red,
+  gray,
+  dim,
+} = require('chalk')
 
 const genericPromiseFn = (waitForMs, payload, throwError = false) =>
   new Promise((resolve, reject) => {
@@ -41,8 +51,8 @@ const waitFor = () => {
   return fulfillAfterMs(10)
 }
 
-const handleError = (err) => {
-  console.log(gray("Successfully handled this error: ") + red(err.message))
+const handleError = err => {
+  console.log(dim('Successfully handled this error: ') + dim(red(err.message)))
 }
 
 /**
