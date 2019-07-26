@@ -19,6 +19,7 @@ const {
   stillDrawing,
 } = require('../utils')
 
+console.clear()
 describe('Tier 3: Parallel', () => {
   afterEach(() => {
     sinon.reset()
@@ -50,6 +51,7 @@ describe('Tier 3: Parallel', () => {
       // expect(crayonDraw.getCall(3).args[0]).to.equal('yellow')
       // expect(crayonDraw.getCall(4).args[0]).to.equal('cyan')
       // console.log('AFTER PROMISES HAVE RESOLVED stillDrawing:', stillDrawing())
+      // console.log(crayonDraws)
       done()
     }, 1050)
   })

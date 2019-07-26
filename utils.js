@@ -52,18 +52,30 @@ const resetCrayonDraws = () => {
   crayonDraws = []
 }
 
-const unfinishedDraws = currentColor => {
-  return crayonDraws
-    .filter(draw => !draw.end && draw.color !== currentColor)
-    .map(draw => draw.color)
-}
-
-// Returns true if there is still a crayon draw going on that hasn't ended yet
-// Ignore the color currently being drawn that calls this function.
-const stillDrawing = currentColor => {
-  // if (crayonDraws.length === 0) return false
+const similarStartingTime = promiseId => {
+  const thisDraw = crayonDraws.find(draw => draw.id === promiseId)
+  // console.log('thisDraw', thisDraw)
+  const { start } = thisDraw
+  // console.log('start', start)
+  const interval = 50
+  const firstStart = crayonDraws.reduce((earliest, current) => {
+    if (current.start < earliest.start) return current
+    return earliest
+  })
+  // console.log(firstStart)
+  crayonDraws.forEach(draw => {
+    console.log(thisDraw.color, '>-<', draw.color, thisDraw.start - draw.start)
+  })
   // console.log(crayonDraws)
-  return crayonDraws.find(draw => draw.end) === undefined
+  return (
+    crayonDraws.find(draw => {
+      if (draw.id === promiseId) return false
+      // console.log('draw.start - interval', draw.start - interval)
+      // console.log('start', start)
+      // console.log()
+      return draw.start + interval < start || start + interval <= draw.start
+    }) !== undefined
+  )
 }
 
 const crayonDraw = (color = 'white') => {
@@ -77,21 +89,15 @@ const crayonDraw = (color = 'white') => {
   const promiseId = Math.floor(Math.random() * 1000000)
   crayonDraws.push({
     id: promiseId,
-    start: new Date(),
+    start: Date.now(),
     end: null,
     color,
   })
   return fulfillAfterMs(200).then(() => {
-    process.stdout.write(logColor(color) + ' -> ')
-    if (unfinishedDraws(color).length > 0) {
-      // console.log('')
-    }
-    // console.log(unfinishedDraws(color))
-    if (!stillDrawing()) {
-      // process.stdout.write('not still drawing')
-      // console.log('')
-    }
-    crayonDraws.find(draw => draw.id === promiseId).end = new Date()
+    // process.stdout.write(logColor(color) + ' ')
+    console.log('\t' + logColor(color))
+    similarStartingTime(promiseId)
+    crayonDraws.find(draw => draw.id === promiseId).end = Date.now()
   })
 }
 
@@ -108,5 +114,4 @@ module.exports = {
   crayonDraw: fake(crayonDraw),
   crayonDraws,
   resetCrayonDraws,
-  stillDrawing,
 }
