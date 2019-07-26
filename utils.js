@@ -64,6 +64,7 @@ const similarStartingTime = promiseId => {
   })
   // console.log(firstStart)
   crayonDraws.forEach(draw => {
+    if (draw.id === thisDraw.id) return
     console.log(thisDraw.color, '>-<', draw.color, thisDraw.start - draw.start)
   })
   // console.log(crayonDraws)
