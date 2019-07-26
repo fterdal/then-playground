@@ -54,8 +54,9 @@ const resetCrayonDraws = () => {
 
 // Returns true if there is still a crayon draw going on that hasn't ended yet
 const stillDrawing = () => {
-  if (crayonDraws.length === 0) return false
-  return crayonDraws.filter(draw => draw.end).length === 0
+  // if (crayonDraws.length === 0) return false
+  // console.log(crayonDraws)
+  return crayonDraws.find(draw => draw.end) === undefined
 }
 
 const crayonDraw = (color = 'white') => {
@@ -74,7 +75,15 @@ const crayonDraw = (color = 'white') => {
     color,
   })
   return fulfillAfterMs(200).then(() => {
-    console.log(logColor(color))
+    if (stillDrawing()) {
+      // console.log('PROCESS STDOUT')
+      process.stdout.write(logColor(color) + ' ')
+    } else {
+      // if (color === 'yellow') {
+      //   console.log(crayonDraws.filter(draw => !draw.end))
+      // }
+      console.log(logColor(color))
+    }
     crayonDraws.find(draw => draw.id === promiseId).end = new Date()
   })
 }

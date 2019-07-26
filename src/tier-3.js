@@ -24,15 +24,10 @@ const YOUR_CODE_HERE = () => {
   // crayonDraw('yellow')
   // crayonDraw('cyan')
 
-  crayonDraw('blue')
+  Promise.all([crayonDraw('blue'), crayonDraw('green')])
     .then(() => {
-      return crayonDraw('green')
-    })
-    .then(() => {
-      return crayonDraw('magenta')
-    })
-    .then(() => {
-      return crayonDraw('yellow')
+      // console.log('FINISHED WITH BLUE AND GREEN')
+      return Promise.all([crayonDraw('magenta'), crayonDraw('yellow')])
     })
     .then(() => {
       return crayonDraw('cyan')
