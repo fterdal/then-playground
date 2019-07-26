@@ -52,8 +52,15 @@ const resetCrayonDraws = () => {
   crayonDraws = []
 }
 
+const unfinishedDraws = currentColor => {
+  return crayonDraws
+    .filter(draw => !draw.end && draw.color !== currentColor)
+    .map(draw => draw.color)
+}
+
 // Returns true if there is still a crayon draw going on that hasn't ended yet
-const stillDrawing = () => {
+// Ignore the color currently being drawn that calls this function.
+const stillDrawing = currentColor => {
   // if (crayonDraws.length === 0) return false
   // console.log(crayonDraws)
   return crayonDraws.find(draw => draw.end) === undefined
@@ -75,14 +82,14 @@ const crayonDraw = (color = 'white') => {
     color,
   })
   return fulfillAfterMs(200).then(() => {
-    if (stillDrawing()) {
-      // console.log('PROCESS STDOUT')
-      process.stdout.write(logColor(color) + ' ')
-    } else {
-      // if (color === 'yellow') {
-      //   console.log(crayonDraws.filter(draw => !draw.end))
-      // }
-      console.log(logColor(color))
+    process.stdout.write(logColor(color) + ' -> ')
+    if (unfinishedDraws(color).length > 0) {
+      // console.log('')
+    }
+    // console.log(unfinishedDraws(color))
+    if (!stillDrawing()) {
+      // process.stdout.write('not still drawing')
+      // console.log('')
     }
     crayonDraws.find(draw => draw.id === promiseId).end = new Date()
   })

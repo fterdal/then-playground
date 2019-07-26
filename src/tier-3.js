@@ -32,6 +32,9 @@ const YOUR_CODE_HERE = () => {
     .then(() => {
       return crayonDraw('cyan')
     })
+    .finally(() => {
+      console.log('\n')
+    })
 }
 
 module.exports = {
