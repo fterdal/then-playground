@@ -17,7 +17,7 @@ const {
   promisesShouldReject,
 } = utils
 
-describe('Tier 1: Getting Started', () => {
+describe.only('Tier 1: Getting Started', () => {
   afterEach(() => {
     sinon.reset()
     // sinon.restore()

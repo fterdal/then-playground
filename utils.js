@@ -1,6 +1,5 @@
 const { fake } = require('sinon')
-const { karaoke } = require('chalk-animation')
-const { blue } = require('chalk')
+const { blue, white, magenta, yellow, green, cyan, red } = require('chalk')
 
 const genericPromiseFn = (waitForMs, payload, throwError = false) =>
   new Promise((resolve, reject) => {
@@ -42,8 +41,21 @@ const waitFor = () => {
   return fulfillAfterMs(10)
 }
 
-const crayonDraw = (text, color = 'blue') => {
-  return fulfillAfterMs(250).then(() => console.log(blue(text)))
+/**
+ * Have it take an argument: blue, magenta, yellow, green, cyan, white
+ * and it writes out the name of that color in that color.
+ *
+ * When it starts, it pushes the information onto an array in this file,
+ * recording each time one of these crayonDraws is called.
+ */
+const crayonDraws = []
+const crayonDraw = (color = 'white') => {
+  const getColor = { blue, white, magenta, yellow, green, cyan, red }[color]
+  crayonDraws.push({
+    start: new Date(),
+    color,
+  })
+  return fulfillAfterMs(200).then(() => console.log(getColor(color)))
 }
 
 module.exports = {
@@ -57,4 +69,5 @@ module.exports = {
   promisesShouldFulfill,
   promisesShouldReject,
   crayonDraw: fake(crayonDraw),
+  crayonDraws,
 }

@@ -9,24 +9,21 @@ const { expect } = chai
 
 const { YOUR_CODE_HERE } = require('../src/tier-2')
 const utils = require('../utils')
-const {
-  crayonDraw,
-  finished,
-  handleError,
-} = utils
+const { crayonDraw, handleError, crayonDraws } = utils
 
-describe.only('Tier 2: Sequential', () => {
+describe('Tier 2: Sequential', () => {
   afterEach(() => {
     sinon.reset()
   })
 
   it('calls crayonDraw four times', done => {
     expect(crayonDraw).to.not.be.called
+    // console.log('crayonDraws', crayonDraws)
     YOUR_CODE_HERE()
     setTimeout(() => {
       expect(crayonDraw).callCount(4)
+      // console.log('crayonDraws', crayonDraws)
       done()
-    }, 1100)
+    }, 900)
   })
-
 })

@@ -20,15 +20,19 @@ const { crayonDraw, finished, handleError } = require('../utils')
 
 const YOUR_CODE_HERE = () => {
   // THEN
-  crayonDraw('ONE')
+  // crayonDraw()
+  // crayonDraw()
+  // crayonDraw()
+  // crayonDraw()
+  return crayonDraw()
     .then(() => {
-      return crayonDraw('TWO')
+      return crayonDraw()
     })
     .then(() => {
-      return crayonDraw('THREE')
+      return crayonDraw()
     })
     .then(() => {
-      return crayonDraw('FOUR')
+      return crayonDraw()
     })
 }
 
