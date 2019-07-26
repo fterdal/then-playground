@@ -1,15 +1,5 @@
 const { fake } = require('sinon')
-const {
-  blue,
-  white,
-  magenta,
-  yellow,
-  green,
-  cyan,
-  red,
-  gray,
-  dim,
-} = require('chalk')
+const { blue, white, magenta, yellow, green, cyan, red, dim } = require('chalk')
 
 const genericPromiseFn = (waitForMs, payload, throwError = false) =>
   new Promise((resolve, reject) => {
