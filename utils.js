@@ -92,6 +92,10 @@ const similarStartingTime = promiseId => {
  * logging a color, first check to see if any others started at a similar time.
  * If there's a similarly-timed color, log without a newline. If not, begin with
  * a newline.
+ *
+ * ANOTHER IDEA: Create a throttled "newline" function. Call it at the beginning
+ * of each logColor, so that the newline appears no more frequently than an
+ * interval (e.g. 100ms)
  */
 
 const crayonDraw = (color = 'white') => {
