@@ -48,56 +48,11 @@ const handleError = err => {
   console.log(dim('Successfully handled this error: ') + dim(red(err.message)))
 }
 
+// Might not need this at all...
 let crayonDraws = []
 const resetCrayonDraws = () => {
   crayonDraws = []
 }
-
-const similarStartingTime = promiseId => {
-  const thisDraw = crayonDraws.find(draw => draw.id === promiseId)
-  // console.log('thisDraw', thisDraw)
-  const { start } = thisDraw
-  // console.log('start', start)
-  const interval = 50
-  const firstStart = crayonDraws.reduce((earliest, current) => {
-    if (current.start < earliest.start) return current
-    return earliest
-  })
-  // console.log(firstStart)
-  // crayonDraws.forEach(draw => {
-  //   if (draw.id === thisDraw.id) return
-  //   console.log(thisDraw.color, '>-<', draw.color, thisDraw.start - draw.start)
-  // })
-  // console.log(crayonDraws)
-  return (
-    crayonDraws.find(draw => {
-      if (draw.id === promiseId) return false
-      // console.log('draw.start - interval', draw.start - interval)
-      // console.log('start', start)
-      // console.log()
-      return draw.start + interval < start || start + interval <= draw.start
-    }) !== undefined
-  )
-}
-
-/**
- * THE GOAL right now is to find a way to log crayonDraws that start at the same
- * time adjacent to one another, while those that start later are logged on separate lines
- * So, if blue and green are concurrent, then magenta and yellow are concurrent,
- * then cyan comes last, it would look like this on the terminal:
- * blue green
- * magenta yellow
- * cyan
- *
- * THE APPROACH is to keep track of when each of these promises starts. And when
- * logging a color, first check to see if any others started at a similar time.
- * If there's a similarly-timed color, log without a newline. If not, begin with
- * a newline.
- *
- * ANOTHER IDEA: Create a throttled "newline" function. Call it at the beginning
- * of each logColor, so that the newline appears no more frequently than an
- * interval (e.g. 100ms)
- */
 
 const newLine = throttle(() => {
   console.log('')
@@ -121,8 +76,6 @@ const crayonDraw = (color = 'white') => {
   return fulfillAfterMs(200).then(() => {
     newLine()
     process.stdout.write(logColor(color) + ' ')
-    // console.log(logColor(color))
-    similarStartingTime(promiseId)
     crayonDraws.find(draw => draw.id === promiseId).end = Date.now()
   })
 }
