@@ -1,6 +1,6 @@
 const { fake } = require('sinon')
 const { blue, white, magenta, yellow, green, cyan, red, dim } = require('chalk')
-const throttle = require('lodash.throttle')
+const debounce = require('lodash.debounce')
 
 const genericPromiseFn = (waitForMs, payload, throwError = false) =>
   new Promise((resolve, reject) => {
@@ -54,7 +54,7 @@ const resetCrayonDraws = () => {
   crayonDraws = []
 }
 
-const newLine = throttle(() => {
+const newLine = debounce(() => {
   console.log('')
 }, 100)
 
