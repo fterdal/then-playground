@@ -1,5 +1,6 @@
 const { fake } = require('sinon')
 const { blue, white, magenta, yellow, green, cyan, red, dim } = require('chalk')
+const throttle = require('lodash.throttle')
 
 const genericPromiseFn = (waitForMs, payload, throwError = false) =>
   new Promise((resolve, reject) => {
@@ -63,10 +64,10 @@ const similarStartingTime = promiseId => {
     return earliest
   })
   // console.log(firstStart)
-  crayonDraws.forEach(draw => {
-    if (draw.id === thisDraw.id) return
-    console.log(thisDraw.color, '>-<', draw.color, thisDraw.start - draw.start)
-  })
+  // crayonDraws.forEach(draw => {
+  //   if (draw.id === thisDraw.id) return
+  //   console.log(thisDraw.color, '>-<', draw.color, thisDraw.start - draw.start)
+  // })
   // console.log(crayonDraws)
   return (
     crayonDraws.find(draw => {
@@ -98,6 +99,10 @@ const similarStartingTime = promiseId => {
  * interval (e.g. 100ms)
  */
 
+const newLine = throttle(() => {
+  console.log('')
+}, 100)
+
 const crayonDraw = (color = 'white') => {
   const logColor = { blue, white, magenta, yellow, green, cyan, red }[color]
   if (typeof logColor !== 'function') {
@@ -114,8 +119,9 @@ const crayonDraw = (color = 'white') => {
     color,
   })
   return fulfillAfterMs(200).then(() => {
-    // process.stdout.write(logColor(color) + ' ')
-    console.log('\t' + logColor(color))
+    newLine()
+    process.stdout.write(logColor(color) + ' ')
+    // console.log(logColor(color))
     similarStartingTime(promiseId)
     crayonDraws.find(draw => draw.id === promiseId).end = Date.now()
   })
