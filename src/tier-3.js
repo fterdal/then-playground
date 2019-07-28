@@ -16,11 +16,11 @@ http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%203%3A%0AParallel
 
 const { crayonDraw, handleError } = require('../utils')
 
-const YOUR_CODE_HERE = async () => {
+const YOUR_CODE_HERE = () => {
 
-  await Promise.all([crayonDraw('blue'), crayonDraw('green')])
-  await Promise.all([crayonDraw('magenta'), crayonDraw('yellow')])
-  crayonDraw('cyan')
+  // await Promise.all([crayonDraw('blue'), crayonDraw('green')])
+  // await Promise.all([crayonDraw('magenta'), crayonDraw('yellow')])
+  // crayonDraw('cyan')
 
 
   // THEN
@@ -30,16 +30,16 @@ const YOUR_CODE_HERE = async () => {
   // crayonDraw('yellow')
   // crayonDraw('cyan')
 
-  // Promise.all([crayonDraw('blue'), crayonDraw('green')])
-  //   .then(() => {
-  //     return Promise.all([crayonDraw('magenta'), crayonDraw('yellow')])
-  //   })
-  //   .then(() => {
-  //     return crayonDraw('cyan')
-  //   })
-  //   .finally(() => {
-  //     console.log('\n')
-  //   })
+  Promise.all([crayonDraw('blue'), crayonDraw('green')])
+    .then(() => {
+      return Promise.all([crayonDraw('magenta'), crayonDraw('yellow')])
+    })
+    .then(() => {
+      return crayonDraw('cyan')
+    })
+    // .finally(() => {
+    //   console.log('\n')
+    // })
 }
 
 module.exports = {
