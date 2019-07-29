@@ -18,7 +18,6 @@ const {
   stillDrawing,
 } = require('../utils')
 
-console.clear()
 describe('Tier 3: Parallel', () => {
   afterEach(() => {
     sinon.reset()

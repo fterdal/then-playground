@@ -48,6 +48,10 @@ const handleError = err => {
   console.log(dim('Successfully handled this error: ') + dim(red(err.message)))
 }
 
+const noise = () => {
+  return Math.floor(Math.random() * 6)
+}
+
 // Might not need this at all...
 let crayonDraws = []
 const resetCrayonDraws = () => {
@@ -73,9 +77,9 @@ const crayonDraw = (color = 'white') => {
     end: null,
     color,
   })
-  return fulfillAfterMs(200).then(() => {
-    newLine()
+  return fulfillAfterMs(200 + noise()).then(() => {
     process.stdout.write(logColor(color) + ' ')
+    newLine()
     crayonDraws.find(draw => draw.id === promiseId).end = Date.now()
   })
 }
