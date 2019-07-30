@@ -16,6 +16,7 @@ const {
   promisesShouldFulfill,
   promisesShouldReject,
   stillDrawing,
+  normalizeCrayonDraws,
 } = require('../utils')
 
 describe('Tier 3: Parallel', () => {
@@ -41,6 +42,7 @@ describe('Tier 3: Parallel', () => {
     setTimeout(() => {
       // TODO Write the tests here
       console.log(crayonDraws)
+      console.log(normalizeCrayonDraws(crayonDraws))
       done()
     }, 1050)
   })

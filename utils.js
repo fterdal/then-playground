@@ -52,12 +52,26 @@ const noise = () => {
   return Math.floor(Math.random() * 6)
 }
 
-// Might not need this at all...
 let crayonDraws = []
 const resetCrayonDraws = () => {
   while (crayonDraws.length) {
     crayonDraws.pop()
   }
+}
+
+const normalizeCrayonDraws = crayonDraws => {
+  const earliestStart = crayonDraws.reduce((earliest, draw) => {
+    if (draw.start < earliest) return draw.start
+    return earliest
+  }, Infinity)
+  // console.log('earliestStart', earliestStart)
+  return crayonDraws.map(draw => {
+    return {
+      ...draw,
+      start: draw.start - earliestStart,
+      end: draw.end - earliestStart,
+    }
+  })
 }
 
 const newLine = debounce(() => {
@@ -99,4 +113,5 @@ module.exports = {
   crayonDraw: fake(crayonDraw),
   crayonDraws,
   resetCrayonDraws,
+  normalizeCrayonDraws,
 }
