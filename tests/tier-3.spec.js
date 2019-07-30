@@ -35,10 +35,12 @@ describe('Tier 3: Parallel', () => {
   })
 
   it('calls crayonDraw with blue & green concurrently then magenta & yellow concurrently then cyan last', done => {
+    console.log(crayonDraws)
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
       // TODO Write the tests here
+      console.log(crayonDraws)
       done()
     }, 1050)
   })

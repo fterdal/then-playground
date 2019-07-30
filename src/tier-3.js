@@ -24,22 +24,14 @@ const YOUR_CODE_HERE = () => {
 
 
   // THEN
-  // crayonDraw('blue')
-  // crayonDraw('green')
-  // crayonDraw('magenta')
-  // crayonDraw('yellow')
-  // crayonDraw('cyan')
-
   Promise.all([crayonDraw('blue'), crayonDraw('green')])
     .then(() => {
       return Promise.all([crayonDraw('magenta'), crayonDraw('yellow')])
     })
     .then(() => {
-      return crayonDraw('cyan')
+      crayonDraw('cyan')
     })
-    // .finally(() => {
-    //   console.log('\n')
-    // })
+
 }
 
 module.exports = {

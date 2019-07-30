@@ -55,7 +55,9 @@ const noise = () => {
 // Might not need this at all...
 let crayonDraws = []
 const resetCrayonDraws = () => {
-  crayonDraws = []
+  while (crayonDraws.length) {
+    crayonDraws.pop()
+  }
 }
 
 const newLine = debounce(() => {
