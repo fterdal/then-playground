@@ -59,18 +59,27 @@ const resetCrayonDraws = () => {
   }
 }
 
+// eslint-disable-next-line no-shadow
 const normalizeCrayonDraws = crayonDraws => {
   const earliestStart = crayonDraws.reduce((earliest, draw) => {
     if (draw.start < earliest) return draw.start
     return earliest
   }, Infinity)
-  return crayonDraws.map(draw => {
-    return {
-      ...draw,
-      start: draw.start - earliestStart,
-      end: draw.end - earliestStart,
-    }
-  })
+  return crayonDraws
+    .map(draw => {
+      return {
+        ...draw,
+        start: draw.start - earliestStart,
+        end: draw.end - earliestStart,
+      }
+    })
+    .reduce((drawObj, draw) => {
+      drawObj[draw.color] = {
+        start: draw.start,
+        end: draw.end,
+      }
+      return drawObj
+    }, {})
 }
 
 const newLine = debounce(() => {
