@@ -35,14 +35,32 @@ describe('Tier 3: Parallel', () => {
     }, 1050)
   })
 
-  it('calls crayonDraw with blue & green concurrently then magenta & yellow concurrently then cyan last', done => {
-    console.log(crayonDraws)
+  it('calls crayonDraw with blue, green, magenta, yellow, and cyan (once each)', done => {
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
-      // TODO Write the tests here
-      console.log(crayonDraws)
+      expect(crayonDraw).callCount(5)
+      expect(crayonDraw).to.be.calledWith('blue')
+      expect(crayonDraw).to.be.calledWith('green')
+      expect(crayonDraw).to.be.calledWith('magenta')
+      expect(crayonDraw).to.be.calledWith('yellow')
+      expect(crayonDraw).to.be.calledWith('cyan')
+      done()
+    }, 1050)
+  })
+
+  it('calls crayonDraw with blue & green concurrently then magenta & yellow concurrently then cyan last', done => {
+    expect(crayonDraw).to.not.be.called
+    YOUR_CODE_HERE()
+    setTimeout(() => {
       console.log(normalizeCrayonDraws(crayonDraws))
+      console.log(normalizeCrayonDraws(crayonDraws).reduce((drawObj, draw) => {
+        drawObj[draw.color] = {
+          start: draw.start,
+          end: draw.end
+        }
+        return drawObj
+      }, {}))
       done()
     }, 1050)
   })

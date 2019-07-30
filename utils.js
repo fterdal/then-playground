@@ -64,7 +64,6 @@ const normalizeCrayonDraws = crayonDraws => {
     if (draw.start < earliest) return draw.start
     return earliest
   }, Infinity)
-  // console.log('earliestStart', earliestStart)
   return crayonDraws.map(draw => {
     return {
       ...draw,
