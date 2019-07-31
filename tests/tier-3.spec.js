@@ -15,7 +15,6 @@ const {
   resetCrayonDraws,
   promisesShouldFulfill,
   promisesShouldReject,
-  stillDrawing,
   normalizeCrayonDraws,
 } = require('../utils')
 
@@ -62,7 +61,7 @@ describe('Tier 3: Parallel', () => {
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
-      // Uncomment this console.log to see your crayonDraws timings
+      // Uncomment this console.log to see your crayonDraw timings
       // console.log(normalizeCrayonDraws(crayonDraws))
       const { blue, green, magenta, yellow, cyan } = normalizeCrayonDraws(
         crayonDraws
@@ -72,6 +71,25 @@ describe('Tier 3: Parallel', () => {
       expect(blue.end).to.be.lte(magenta.start)
       expect(magenta.end).to.be.lte(cyan.start)
       done()
-    }, 1050)
+    }, 750)
+  })
+
+  it('calls handleError with any errors that occur & skip all following crayonDraws', done => {
+    expect(crayonDraw).to.not.be.called
+    promisesShouldReject()
+    YOUR_CODE_HERE()
+    setTimeout(() => {
+      expect(crayonDraw).callCount(4)
+      expect(crayonDraw).to.be.calledWith('blue')
+      expect(crayonDraw).to.be.calledWith('green')
+      expect(crayonDraw).to.be.calledWith('magenta')
+      expect(crayonDraw).to.be.calledWith('yellow')
+      expect(crayonDraw).to.not.be.calledWith('cyan')
+      expect(handleError).to.be.called
+      expect(handleError).to.be.calledWithMatch({
+        message: 'Uh oh, the magenta crayon broke!',
+      })
+      done()
+    }, 750)
   })
 })

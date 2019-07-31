@@ -91,9 +91,6 @@ const crayonDraw = (color = 'white') => {
   if (typeof logColor !== 'function') {
     throw new Error(`Couldn't find ${color} crayon`)
   }
-  if (promisesData.shouldError && color === 'green') {
-    throw new Error('Uh oh, the green crayon broke!')
-  }
   const promiseId = Math.floor(Math.random() * 1000000)
   crayonDraws.push({
     id: promiseId,
@@ -102,6 +99,9 @@ const crayonDraw = (color = 'white') => {
     color,
   })
   return fulfillAfterMs(200 + noise()).then(() => {
+    if (promisesData.shouldError && color === 'magenta') {
+      throw new Error('Uh oh, the magenta crayon broke!')
+    }
     process.stdout.write(logColor(color) + ' ')
     newLine()
     crayonDraws.find(draw => draw.id === promiseId).end = Date.now()

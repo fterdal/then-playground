@@ -36,6 +36,9 @@ const YOUR_CODE_HERE = () => {
     .then(() => {
       crayonDraw('cyan')
     })
+    .catch(err => {
+      handleError(err)
+    })
 }
 
 module.exports = {

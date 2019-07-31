@@ -66,12 +66,13 @@ describe('Tier 2: Sequential', () => {
     promisesShouldReject()
     YOUR_CODE_HERE()
     setTimeout(() => {
-      expect(crayonDraw).callCount(2)
+      expect(crayonDraw).callCount(3)
       expect(crayonDraw.getCall(0).args[0]).to.equal('blue')
       expect(crayonDraw.getCall(1).args[0]).to.equal('green')
+      expect(crayonDraw.getCall(2).args[0]).to.equal('magenta')
       expect(handleError).to.be.called
       expect(handleError).to.be.calledWithMatch({
-        message: 'Uh oh, the green crayon broke!',
+        message: 'Uh oh, the magenta crayon broke!',
       })
       rainbow('Congratulations! Move on to Tier 3.')
       done()
