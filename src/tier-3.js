@@ -16,18 +16,16 @@ http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%203%3A%0AParallel
 
 const { crayonDraw, handleError } = require('../utils')
 
-const YOUR_CODE_HERE = () => {
-  // await Promise.all([crayonDraw('blue'), crayonDraw('green')])
-  // await Promise.all([crayonDraw('magenta'), crayonDraw('yellow')])
-  // crayonDraw('cyan')
+const YOUR_CODE_HERE = async () => {
+  // AWAIT
+  // try {
+  //   await Promise.all([crayonDraw('blue'), crayonDraw('green')])
+  //   await Promise.all([crayonDraw('magenta'), crayonDraw('yellow')])
+  //   crayonDraw('cyan')
+  // } catch (err) {
+  //   handleError(err)
+  // }
 
-  // Promise.all([
-  //   crayonDraw('blue'),
-  //   crayonDraw('green'),
-  //   crayonDraw('magenta'),
-  //   crayonDraw('yellow'),
-  //   crayonDraw('cyan'),
-  // ])
   // THEN
   Promise.all([crayonDraw('blue'), crayonDraw('green')])
     .then(() => {

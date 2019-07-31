@@ -74,8 +74,8 @@ describe('Tier 2: Sequential', () => {
       expect(handleError).to.be.calledWithMatch({
         message: 'Uh oh, the magenta crayon broke!',
       })
-      rainbow('Congratulations! Move on to Tier 3.')
       done()
+      rainbow('Congratulations! Move on to Tier 3.')
     }, 850)
   })
 })
