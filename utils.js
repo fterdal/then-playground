@@ -1,6 +1,7 @@
 const { fake } = require('sinon')
 const { blue, white, magenta, yellow, green, cyan, red, dim } = require('chalk')
 const debounce = require('lodash.debounce')
+const shuffle = require('lodash.shuffle')
 
 const genericPromiseFn = (waitForMs, payload, throwError = false) =>
   new Promise((resolve, reject) => {
@@ -86,6 +87,9 @@ const newLine = debounce(() => {
   console.log('')
 }, 100)
 
+const order = shuffle([1, 2, 3])
+
+// What should `await crayonDraw` return?
 const crayonDraw = (color = 'white') => {
   const logColor = { blue, white, magenta, yellow, green, cyan, red }[color]
   if (typeof logColor !== 'function') {
@@ -105,6 +109,7 @@ const crayonDraw = (color = 'white') => {
     process.stdout.write(logColor(color) + ' ')
     newLine()
     crayonDraws.find(draw => draw.id === promiseId).end = Date.now()
+    return order.pop()
   })
 }
 
