@@ -43,7 +43,8 @@ describe("Tier 4: Parallel Cont'd", () => {
   // time, the order in which they'll finish is not predictable.
   it('calls crayonDraw five times', done => {
     // setFirstRow(['green', 'magenta', 'yellow'])
-    // setFirstRow([])
+    const rows = setFirstRow('random')
+    console.log(rows)
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {

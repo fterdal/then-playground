@@ -42,15 +42,17 @@ const promisesShouldFulfill = () => {
   promisesData.shouldError = false
 }
 
-const noise = () => {
-  return Math.floor(Math.random() * 6)
-}
+const noise = () => Math.floor(Math.random() * 6)
 
 const setFirstRow = colors => {
-  if (!colors) {
+  if (colors === 'random') {
     promisesData.colors = shuffle(allColors).slice(noise())
   } else {
     promisesData.colors = colors
+  }
+  return {
+    first: promisesData.colors,
+    second: allColors.filter(color => !promisesData.colors.includes(color)),
   }
 }
 
