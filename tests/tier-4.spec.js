@@ -10,8 +10,11 @@ const { YOUR_CODE_HERE } = require('../src/tier-4')
 const {
   crayonDraw,
   resetCrayonDraws,
+  crayonDraws,
   promisesShouldFulfill,
+  normalizeCrayonDraws,
   setFirstRow,
+  getFirstRow,
 } = require('../utils')
 
 describe("Tier 4: Parallel Cont'd", () => {
@@ -39,15 +42,43 @@ describe("Tier 4: Parallel Cont'd", () => {
     If getFirstRow() returned [], we'd see
     blue yellow green magenta cyan (in any order)
   */
-  it('calls crayonDraw five times', done => {
-    // const rows = setFirstRow(['green', 'magenta', 'yellow'])
-    const rows = setFirstRow('random')
+  it('calls crayonDraw five times and getFirstRow once', done => {
+    const rows = setFirstRow(['green', 'magenta', 'yellow'])
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     console.log(rows)
     setTimeout(() => {
       expect(crayonDraw).callCount(5)
+      expect(getFirstRow).callCount(1)
       done()
     }, 750)
   })
+
+  // TODO: finish writing this test
+  it('draws all the colors in the first row concurrently', done => {
+    const rows = setFirstRow(['blue', 'cyan', 'magenta'])
+    expect(crayonDraw).to.not.be.called
+    YOUR_CODE_HERE()
+    console.log(rows)
+    setTimeout(() => {
+      expect(crayonDraw).callCount(5)
+      expect(getFirstRow).callCount(1)
+      const normalizedCrayons = normalizeCrayonDraws(crayonDraws)
+      console.log(normalizedCrayons)
+      done()
+    }, 750)
+  })
+
+  // TODO: finish writing this test
+  // it('is not hardcoded', done => {
+  //   const rows = setFirstRow('random')
+  //   expect(crayonDraw).to.not.be.called
+  //   YOUR_CODE_HERE()
+  //   console.log(rows)
+  //   setTimeout(() => {
+  //     expect(crayonDraw).callCount(5)
+  //     expect(getFirstRow).callCount(1)
+  //     done()
+  //   }, 750)
+  // })
 })
