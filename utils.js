@@ -42,6 +42,18 @@ const promisesShouldFulfill = () => {
   promisesData.shouldError = false
 }
 
+const noise = () => {
+  return Math.floor(Math.random() * 6)
+}
+
+const setFirstRow = colors => {
+  if (!colors) {
+    promisesData.colors = shuffle(allColors).slice(noise())
+  } else {
+    promisesData.colors = colors
+  }
+}
+
 const getFirstRow = () => {
   return fulfillAfterMs(10, promisesData.colors)
 }
@@ -55,10 +67,6 @@ const waitFor = () => {
 
 const handleError = err => {
   console.log(dim('Successfully handled this error: ') + dim(red(err.message)))
-}
-
-const noise = () => {
-  return Math.floor(Math.random() * 6)
 }
 
 let crayonDraws = []
@@ -134,4 +142,5 @@ module.exports = {
   crayonDraws,
   resetCrayonDraws,
   normalizeCrayonDraws,
+  setFirstRow,
 }

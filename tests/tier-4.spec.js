@@ -11,6 +11,7 @@ const {
   crayonDraw,
   resetCrayonDraws,
   promisesShouldFulfill,
+  setFirstRow,
 } = require('../utils')
 
 describe("Tier 4: Parallel Cont'd", () => {
@@ -41,9 +42,10 @@ describe("Tier 4: Parallel Cont'd", () => {
   // Remember that if several calls to drawCrayon start at the same
   // time, the order in which they'll finish is not predictable.
   it('calls crayonDraw five times', done => {
-    const colors = ['green', 'magenta', 'yellow']
+    // setFirstRow(['green', 'magenta', 'yellow'])
+    // setFirstRow([])
     expect(crayonDraw).to.not.be.called
-    YOUR_CODE_HERE(colors)
+    YOUR_CODE_HERE()
     setTimeout(() => {
       expect(crayonDraw).callCount(5)
       done()

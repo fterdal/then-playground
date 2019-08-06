@@ -17,7 +17,7 @@ http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%204%3A%0AParallel%20Con
 
 const { crayonDraw, getFirstRow, handleError } = require('../utils')
 
-const YOUR_CODE_HERE = colors => {
+const YOUR_CODE_HERE = async colors => {
   const allColors = ['blue', 'green', 'magenta', 'yellow', 'cyan']
 
   // AWAIT
@@ -38,9 +38,13 @@ const YOUR_CODE_HERE = colors => {
   // the return value of the preceding promise. They can always just check
   // the colors argument passed in. I think the solution is some promise that
   // returns an unpredictable result, used by the succcessive promise handlers.
+
   // THEN
   getFirstRow()
     .then(firstRowColors => {
+      if (!firstRowColors.length) {
+        console.log('...')
+      }
       return Promise.all(firstRowColors.map(color => crayonDraw(color)))
     })
     .then(drawnColors => {
