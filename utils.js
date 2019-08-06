@@ -42,6 +42,7 @@ const promisesShouldFulfill = () => {
   promisesData.shouldError = false
 }
 
+// Random integer between 0 and 5
 const noise = () => Math.floor(Math.random() * 6)
 
 const setFirstRow = colors => {

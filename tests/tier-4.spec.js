@@ -20,33 +20,31 @@ describe("Tier 4: Parallel Cont'd", () => {
     resetCrayonDraws()
     promisesShouldFulfill()
   })
+  /*
+    For this tier, we need to draw five colors: blue, green, magenta, yellow,
+    and cyan. They should be drawn in two rows, i.e. some subset of them drawn
+    concurrently, followed by the remaining colors drawn concurrently.
 
-  // We'll pass an array of colors to YOUR_CODE_HERE
-  // from among the list: blue, green, magenta, yellow, cyan
-  // It might include all of them, none of them, or some
-  // subset of them. Your code should draw all of the given colors
-  // (concurently), and then all of the remaining colors afterwards
-  // (concurrently).
-  //
-  // For example,
-  //   YOUR_CODE_HERE('blue', 'yellow') =>
-  //   blue yellow
-  //   green magenta cyan
-  // OR
-  //   YOUR_CODE_HERE() =>
-  //   green blue magenta cyan yellow
-  // OR
-  //   YOUR_CODE_HERE(blue, green, magenta, yellow, cyan) =>
-  //   blue yellow magenta cyan green
-  //
-  // Remember that if several calls to drawCrayon start at the same
-  // time, the order in which they'll finish is not predictable.
+    We can call the special function getFirstRow() (already imported in
+    src/tier-4.js) that tells us which colors should be in the first row -- but
+    it takes 10 milliseconds to resolve, so we'll need to wait for it to finish.
+    After all the colors in the first row have been drawn
+
+    Any color that is not drawn in the first row should be drawn in the second row.
+
+    For example, if getFirstRow() returned ['blue', 'magenta'], we'd see
+    blue magenta (in any order)
+    yellow green cyan (in any order)
+
+    If getFirstRow() returned [], we'd see
+    blue yellow green magenta cyan (in any order)
+  */
   it('calls crayonDraw five times', done => {
-    // setFirstRow(['green', 'magenta', 'yellow'])
+    // const rows = setFirstRow(['green', 'magenta', 'yellow'])
     const rows = setFirstRow('random')
-    console.log(rows)
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
+    console.log(rows)
     setTimeout(() => {
       expect(crayonDraw).callCount(5)
       done()
