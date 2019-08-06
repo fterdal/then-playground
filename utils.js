@@ -27,8 +27,11 @@ const requireArgument = (correctArg, waitForMs, payload, error) => {
   }
 }
 
+const allColors = ['blue', 'green', 'magenta', 'yellow', 'cyan']
+
 const promisesData = {
   shouldError: false,
+  colors: allColors,
 }
 
 const promisesShouldReject = () => {
@@ -37,6 +40,10 @@ const promisesShouldReject = () => {
 
 const promisesShouldFulfill = () => {
   promisesData.shouldError = false
+}
+
+const getFirstRow = () => {
+  return fulfillAfterMs(10, promisesData.colors)
 }
 
 const waitFor = () => {
@@ -123,6 +130,7 @@ module.exports = {
   promisesShouldFulfill,
   promisesShouldReject,
   crayonDraw: fake(crayonDraw),
+  getFirstRow: fake(getFirstRow),
   crayonDraws,
   resetCrayonDraws,
   normalizeCrayonDraws,
