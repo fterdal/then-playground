@@ -21,20 +21,32 @@ const YOUR_CODE_HERE = async colors => {
   const allColors = ['blue', 'green', 'magenta', 'yellow', 'cyan']
 
   // AWAIT
+  try {
+    const firstColors = await Promise.all(
+      colors.map(color => crayonDraw(color))
+    )
+    await Promise.all(
+      allColors
+        .filter(color => !firstColors.includes(color))
+        .map(color => crayonDraw(color))
+    )
+  } catch (err) {
+    handleError(err)
+  }
 
   // THEN
-  Promise.all(colors.map(color => crayonDraw(color)))
-    .then(results => {
-      // console.log(results)
-      return Promise.all(
-        allColors
-          .filter(color => !colors.includes(color))
-          .map(color => crayonDraw(color))
-      )
-    })
-    .catch(err => {
-      handleError(err)
-    })
+  // Promise.all(colors.map(color => crayonDraw(color)))
+  //   .then(results => {
+  //     // console.log(results)
+  //     return Promise.all(
+  //       allColors
+  // .filter(color => !colors.includes(color))
+  // .map(color => crayonDraw(color))
+  //     )
+  //   })
+  //   .catch(err => {
+  //     handleError(err)
+  //   })
 }
 
 module.exports = {
