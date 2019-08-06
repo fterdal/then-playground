@@ -17,26 +17,20 @@ http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%204%3A%0AParallel%20Con
 
 const { crayonDraw, handleError } = require('../utils')
 
-const YOUR_CODE_HERE = () => {
+const YOUR_CODE_HERE = async colors => {
+  const allColors = ['blue', 'green', 'magenta', 'yellow', 'cyan']
+
+  // AWAIT
+
   // THEN
-  Promise.all([crayonDraw('green'), crayonDraw('magenta')])
+  Promise.all(colors.map(color => crayonDraw(color)))
     .then(results => {
-      console.log(results)
-      return Promise.all([
-        results.slice(1),
-        crayonDraw(crayons.find(crayon => crayon.id === results[0]).color),
-      ])
-    })
-    .then(([results]) => {
-      console.log(results)
-      return Promise.all([
-        results.slice(1),
-        crayonDraw(crayons.find(crayon => crayon.id === results[0]).color),
-      ])
-    })
-    .then(([[id]]) => {
-      console.log(id)
-      return crayonDraw(crayons.find(crayon => crayon.id === id).color)
+      // console.log(results)
+      return Promise.all(
+        allColors
+          .filter(color => !colors.includes(color))
+          .map(color => crayonDraw(color))
+      )
     })
     .catch(err => {
       handleError(err)
