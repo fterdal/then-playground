@@ -34,6 +34,10 @@ const YOUR_CODE_HERE = async colors => {
   //   handleError(err)
   // }
 
+  // TODO: A problem now is that there's no reason for students to actually use
+  // the return value of the preceding promise. They can always just check
+  // the colors argument passed in. I think the solution is some promise that
+  // returns an unpredictable result, used by the succcessive promise handlers.
   // THEN
   return Promise.all(colors.map(color => crayonDraw(color)))
     .then(drawnColors => {
