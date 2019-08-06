@@ -17,16 +17,26 @@ http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%204%3A%0AParallel%20Con
 
 const { crayonDraw, handleError } = require('../utils')
 
-const YOUR_CODE_HERE = (crayons) => {
-    // THEN
-  Promise.all(crayons.map(crayon => crayonDraw(crayon.color)))
-    .then((results) => {
-      // Maybe we can use this random array of numbers?
+const YOUR_CODE_HERE = () => {
+  // THEN
+  Promise.all([crayonDraw('green'), crayonDraw('magenta')])
+    .then(results => {
       console.log(results)
-      return Promise.all([crayonDraw('magenta'), crayonDraw('yellow')])
+      return Promise.all([
+        results.slice(1),
+        crayonDraw(crayons.find(crayon => crayon.id === results[0]).color),
+      ])
     })
-    .then(() => {
-      crayonDraw('cyan')
+    .then(([results]) => {
+      console.log(results)
+      return Promise.all([
+        results.slice(1),
+        crayonDraw(crayons.find(crayon => crayon.id === results[0]).color),
+      ])
+    })
+    .then(([[id]]) => {
+      console.log(id)
+      return crayonDraw(crayons.find(crayon => crayon.id === id).color)
     })
     .catch(err => {
       handleError(err)

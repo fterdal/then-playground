@@ -87,7 +87,23 @@ const newLine = debounce(() => {
   console.log('')
 }, 100)
 
-const order = shuffle([1, 2, 3])
+const order = shuffle([
+  'green',
+  'yellow',
+  'magenta',
+  'cyan',
+  'blue',
+])
+
+let idx = 0
+const nextColor = () => {
+  if (idx > order.length - 1) {
+    idx = 0
+  }
+  const color = order[idx]
+  idx++
+  return color
+}
 
 // What should `await crayonDraw` return?
 const crayonDraw = (color = 'white') => {
@@ -109,7 +125,7 @@ const crayonDraw = (color = 'white') => {
     process.stdout.write(logColor(color) + ' ')
     newLine()
     crayonDraws.find(draw => draw.id === promiseId).end = Date.now()
-    return order.pop()
+    return nextColor()
   })
 }
 

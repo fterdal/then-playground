@@ -18,7 +18,7 @@ const {
   normalizeCrayonDraws,
 } = require('../utils')
 
-describe('Tier 3: Parallel', () => {
+describe("Tier 4: Parallel Cont'd", () => {
   const crayons = [
     { id: 1, color: 'green' },
     { id: 2, color: 'magenta' },
@@ -35,8 +35,8 @@ describe('Tier 3: Parallel', () => {
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE(crayons)
     setTimeout(() => {
-      expect(crayonDraw).callCount(6)
+      // expect(crayonDraw).callCount(6)
       done()
-    }, 1050)
+    }, 750)
   })
 })
