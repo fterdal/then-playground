@@ -12,9 +12,11 @@ const {
   resetCrayonDraws,
   crayonDraws,
   promisesShouldFulfill,
+  promisesShouldReject,
   normalizeCrayonDraws,
   setFirstRow,
   getFirstRow,
+  handleError,
 } = require('../utils')
 
 describe("Tier 4: Parallel Cont'd", () => {
@@ -95,7 +97,7 @@ describe("Tier 4: Parallel Cont'd", () => {
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     // Uncomment this console.log to see the expected first and second rows
-    console.log(rows)
+    // console.log(rows)
     setTimeout(() => {
       expect(getFirstRow).callCount(1)
       expect(crayonDraw).callCount(5)
@@ -111,6 +113,26 @@ describe("Tier 4: Parallel Cont'd", () => {
         expect(draws[color].start).to.be.greaterThan(
           lastInFirstRowFinishedAt - 1
         )
+      })
+      done()
+    }, 750)
+  })
+
+  it('calls handleError with any errors that occur & skip all following crayonDraws', done => {
+    setFirstRow(['blue', 'cyan', 'magenta'])
+    promisesShouldReject()
+    expect(crayonDraw).to.not.be.called
+    YOUR_CODE_HERE()
+    // Uncomment this console.log to see the expected first and second rows
+    // console.log(rows)
+    setTimeout(() => {
+      expect(getFirstRow).callCount(1)
+      expect(crayonDraw).callCount(3)
+      expect(crayonDraw).to.not.be.calledWith('yellow')
+      expect(crayonDraw).to.not.be.calledWith('green')
+      expect(handleError).to.be.called
+      expect(handleError).to.be.calledWithMatch({
+        message: 'Uh oh, the magenta crayon broke!',
       })
       done()
     }, 750)
