@@ -48,8 +48,8 @@ describe("Tier 4: Parallel Cont'd", () => {
     YOUR_CODE_HERE()
     // console.log(rows)
     setTimeout(() => {
-      expect(crayonDraw).callCount(5)
       expect(getFirstRow).callCount(1)
+      expect(crayonDraw).callCount(5)
       done()
     }, 750)
   })
@@ -61,16 +61,40 @@ describe("Tier 4: Parallel Cont'd", () => {
     YOUR_CODE_HERE()
     // console.log(rows)
     setTimeout(() => {
-      expect(crayonDraw).callCount(5)
       expect(getFirstRow).callCount(1)
+      expect(crayonDraw).callCount(5)
       const draws = normalizeCrayonDraws(crayonDraws)
       // console.log(draws)
       rows.first.forEach(color => {
         expect(draws[color].start).to.be.lessThan(10)
       })
-      // rows.second.forEach(color => {
-      //   expect(draws[color].start).to.be.lessThan(10)
-      // })
+      done()
+    }, 750)
+  })
+
+  it('draws all the colors in the second row concurrently, after all the first row colors', done => {
+    const rows = setFirstRow(['yellow', 'cyan'])
+    // const rows = setFirstRow([])
+    expect(crayonDraw).to.not.be.called
+    YOUR_CODE_HERE()
+    console.log(rows)
+    setTimeout(() => {
+      expect(getFirstRow).callCount(1)
+      expect(crayonDraw).callCount(5)
+      const draws = normalizeCrayonDraws(crayonDraws)
+      console.log(draws)
+      const lastInFirstRowFinishedAt = rows.first.reduce((latest, color) => {
+        if (draws[color].end > latest) {
+          return draws[color].end
+        }
+        return latest
+      }, 0)
+      console.log('lastInFirstRowFinishedAt:', lastInFirstRowFinishedAt)
+      rows.second.forEach(color => {
+        expect(draws[color].start).to.be.greaterThan(
+          lastInFirstRowFinishedAt - 1
+        )
+      })
       done()
     }, 750)
   })
