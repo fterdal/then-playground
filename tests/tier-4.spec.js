@@ -43,10 +43,10 @@ describe("Tier 4: Parallel Cont'd", () => {
     blue yellow green magenta cyan (in any order)
   */
   it('calls crayonDraw five times and getFirstRow once', done => {
-    const rows = setFirstRow(['green', 'magenta', 'yellow'])
+    setFirstRow(['green', 'magenta', 'yellow'])
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
-    console.log(rows)
+    // console.log(rows)
     setTimeout(() => {
       expect(crayonDraw).callCount(5)
       expect(getFirstRow).callCount(1)
@@ -59,12 +59,18 @@ describe("Tier 4: Parallel Cont'd", () => {
     const rows = setFirstRow(['blue', 'cyan', 'magenta'])
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
-    console.log(rows)
+    // console.log(rows)
     setTimeout(() => {
       expect(crayonDraw).callCount(5)
       expect(getFirstRow).callCount(1)
-      const normalizedCrayons = normalizeCrayonDraws(crayonDraws)
-      console.log(normalizedCrayons)
+      const draws = normalizeCrayonDraws(crayonDraws)
+      // console.log(draws)
+      rows.first.forEach(color => {
+        expect(draws[color].start).to.be.lessThan(10)
+      })
+      // rows.second.forEach(color => {
+      //   expect(draws[color].start).to.be.lessThan(10)
+      // })
       done()
     }, 750)
   })
