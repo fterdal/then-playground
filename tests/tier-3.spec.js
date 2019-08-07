@@ -62,14 +62,12 @@ describe('Tier 3: Parallel', () => {
     YOUR_CODE_HERE()
     setTimeout(() => {
       // Uncomment this console.log to see your crayonDraw timings
-      // console.log(normalizeCrayonDraws(crayonDraws))
-      const { blue, green, magenta, yellow, cyan } = normalizeCrayonDraws(
-        crayonDraws
-      )
+      // console.log(normalizeCrayonDraws())
+      const { blue, green, magenta, yellow, cyan } = normalizeCrayonDraws()
       expect(Math.abs(blue.end - green.end)).to.be.lessThan(20)
       expect(Math.abs(magenta.end - yellow.end)).to.be.lessThan(20)
-      expect(blue.end).to.be.lte(magenta.start)
-      expect(magenta.end).to.be.lte(cyan.start)
+      expect(blue.end).to.be.lessThan(magenta.start + 1)
+      expect(magenta.end).to.be.lessThan(cyan.start + 1)
       done()
     }, 750)
   })

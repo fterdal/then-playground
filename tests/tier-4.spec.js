@@ -63,7 +63,7 @@ describe("Tier 4: Parallel Cont'd", () => {
     setTimeout(() => {
       expect(getFirstRow).callCount(1)
       expect(crayonDraw).callCount(5)
-      const draws = normalizeCrayonDraws(crayonDraws)
+      const draws = normalizeCrayonDraws()
       rows.first.forEach(color => {
         expect(draws[color].start).to.be.lessThan(10)
       })
@@ -78,7 +78,7 @@ describe("Tier 4: Parallel Cont'd", () => {
     setTimeout(() => {
       expect(getFirstRow).callCount(1)
       expect(crayonDraw).callCount(5)
-      const draws = normalizeCrayonDraws(crayonDraws)
+      const draws = normalizeCrayonDraws()
       const lastInFirstRowFinishedAt = rows.first.reduce((latest, color) => {
         if (draws[color].end > latest) return draws[color].end
         return latest
@@ -101,7 +101,7 @@ describe("Tier 4: Parallel Cont'd", () => {
     setTimeout(() => {
       expect(getFirstRow).callCount(1)
       expect(crayonDraw).callCount(5)
-      const draws = normalizeCrayonDraws(crayonDraws)
+      const draws = normalizeCrayonDraws()
       const lastInFirstRowFinishedAt = rows.first.reduce((latest, color) => {
         if (draws[color].end > latest) return draws[color].end
         return latest

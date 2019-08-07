@@ -9,7 +9,8 @@
     "tier-1": "mocha -w tests/tier-1.spec; exit 0;",
     "tier-2": "mocha -w tests/tier-2.spec; exit 0;",
     "tier-3": "mocha -w tests/tier-3.spec; exit 0;",
-    "tier-4": "mocha -w tests/tier-4.spec; exit 0;"
+    "tier-4": "mocha -w tests/tier-4.spec; exit 0;",
+    "tier-5": "mocha -w tests/tier-5.spec; exit 0;"
   },
   "keywords": [],
   "author": "",

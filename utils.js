@@ -32,6 +32,7 @@ const allColors = ['blue', 'green', 'magenta', 'yellow', 'cyan']
 const promisesData = {
   shouldError: false,
   colors: allColors,
+  colorSequence: allColors,
 }
 
 const promisesShouldReject = () => {
@@ -61,6 +62,18 @@ const getFirstRow = () => {
   return fulfillAfterMs(10, promisesData.colors)
 }
 
+const setColorSequence = colors => {
+  if (colors === 'random') {
+    promisesData.colorSequence = shuffle(allColors).slice(noise())
+  } else {
+    promisesData.colorSequence = colors
+  }
+}
+
+const getColorSequence = () => {
+  return fulfillAfterMs(10, promisesData.colorSequence)
+}
+
 const waitFor = () => {
   if (promisesData.shouldError) {
     return rejectAfterMs(10)
@@ -79,8 +92,7 @@ const resetCrayonDraws = () => {
   }
 }
 
-// eslint-disable-next-line no-shadow
-const normalizeCrayonDraws = crayonDraws => {
+const normalizeCrayonDraws = () => {
   const earliestStart = crayonDraws.reduce((earliest, draw) => {
     if (draw.start < earliest) return draw.start
     return earliest
@@ -106,7 +118,6 @@ const newLine = debounce(() => {
   console.log('')
 }, 100)
 
-// What should `await crayonDraw` return?
 const crayonDraw = (color = 'white') => {
   const logColor = { blue, white, magenta, yellow, green, cyan, red }[color]
   if (typeof logColor !== 'function') {
@@ -146,4 +157,6 @@ module.exports = {
   resetCrayonDraws,
   normalizeCrayonDraws,
   setFirstRow,
+  setColorSequence,
+  getColorSequence: fake(getColorSequence),
 }
