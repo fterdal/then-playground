@@ -123,8 +123,6 @@ describe("Tier 4: Parallel Cont'd", () => {
     promisesShouldReject()
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
-    // Uncomment this console.log to see the expected first and second rows
-    // console.log(rows)
     setTimeout(() => {
       expect(getFirstRow).callCount(1)
       expect(crayonDraw).callCount(3)
