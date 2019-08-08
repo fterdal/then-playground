@@ -64,7 +64,7 @@ const getFirstRow = () => {
 
 const setColorSequence = colors => {
   if (colors === 'random') {
-    promisesData.colorSequence = shuffle(allColors).slice(noise())
+    promisesData.colorSequence = shuffle(allColors)
   } else {
     promisesData.colorSequence = colors
   }
@@ -72,6 +72,10 @@ const setColorSequence = colors => {
 
 const getColorSequence = () => {
   return fulfillAfterMs(10, promisesData.colorSequence)
+}
+
+const resetColorSequence = () => {
+  promisesData.colorSequence = allColors
 }
 
 const waitFor = () => {
@@ -159,4 +163,5 @@ module.exports = {
   setFirstRow,
   setColorSequence,
   getColorSequence: fake(getColorSequence),
+  resetColorSequence,
 }

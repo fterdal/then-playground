@@ -34,7 +34,7 @@ const YOUR_CODE_HERE = () => {
   // }
 
   // THEN
-  return waitFor()
+  waitFor()
     .then(() => {
       finished()
     })
