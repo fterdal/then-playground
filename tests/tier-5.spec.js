@@ -2,6 +2,7 @@
 const chai = require('chai')
 const sinon = require('sinon')
 const sinonChai = require('sinon-chai')
+const { rainbow } = require('chalk-animation')
 
 chai.use(sinonChai)
 const { expect } = chai
@@ -78,6 +79,7 @@ describe("Tier 5: Sequential Cont'd", () => {
       // const draws = normalizeCrayonDraws()
       // console.log(draws)
       done()
+      rainbow('Congratulations! You finished!')
     }, 1050)
   })
 })

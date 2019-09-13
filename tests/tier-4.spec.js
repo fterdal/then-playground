@@ -2,6 +2,7 @@
 const chai = require('chai')
 const sinon = require('sinon')
 const sinonChai = require('sinon-chai')
+const { rainbow } = require('chalk-animation')
 
 chai.use(sinonChai)
 const { expect } = chai
@@ -133,6 +134,7 @@ describe("Tier 4: Parallel Cont'd", () => {
         message: 'Uh oh, the magenta crayon broke!',
       })
       done()
+      rainbow('Congratulations! Move on to Tier 5.')
     }, 750)
   })
 })
