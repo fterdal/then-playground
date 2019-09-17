@@ -13,3 +13,16 @@
 
 http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%203%3A%0AParallel
 */
+
+const { crayonDraw, handleError } = require('../utils')
+
+const YOUR_CODE_HERE = () => {
+  // AWAIT
+
+  // THEN
+
+}
+
+module.exports = {
+  YOUR_CODE_HERE,
+}
