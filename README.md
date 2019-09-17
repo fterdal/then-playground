@@ -2,7 +2,7 @@
 
 Have you experienced the joy of opening a giant box of crayons and going absolutely wild with them? Well, have I got just the workshop for you!
 
-Okay, so maybe we don't have _actual crayons_ for you to use -- instead we've prepared some virtual crayons, which draw colors on your terminal. We have virtual crayons of the following colors: *blue, white, magenta, yellow, green, cyan, red*. You can use these crayons by calling the drawCrayon function, like so:
+Okay, so maybe we don't have _actual crayons_ for you to use -- instead we've prepared some virtual crayons, which draw colors on your terminal. We have virtual crayons of the following colors: *blue, white, magenta, yellow, green, cyan, and red*. You can use these crayons by calling the drawCrayon function, like so:
 
 `drawCrayon('yellow') // Draws with the yellow crayon`
 
@@ -10,7 +10,7 @@ Okay, so maybe we don't have _actual crayons_ for you to use -- instead we've pr
 
 `drawCrayon('magenta') // Draws with the magenta crayon`
 
-Drawing with crayons isn't instaneous, it takes (roughly) 200 milliseconds to do so.
+Drawing with crayons isn't instantaneous, it takes (roughly) 200 milliseconds to do so.
 
 The prepared test specs ask you to draw with these crayons in very particular orders. For instance, a test may ask you to draw blue & green concurrently, then magenta & yellow concurrently, then cyan last of all. It wouldn't do to draw these colors all at once. We have to _wait_ for the previous colors to finish before starting on the next ones.
 
