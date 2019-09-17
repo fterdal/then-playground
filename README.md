@@ -48,4 +48,4 @@ Once you've passed all the tests for a tier using one of these methods, comment 
 
 Oh, and don't forget to `npm install` before you get started!
 
-![BOB ROSS IMAGE HERE](https://upload.wikimedia.org/wikipedia/en/7/70/Bob_at_Easel.jpg)
+![BOB ROSS IMAGE HERE](https://i.imgflip.com/3asupb.jpg)
