@@ -18,11 +18,11 @@ When you start drawing two or more crayons at the same time, they'll appear on t
 
 These crayons are all drawn in parallel:
 
-[PARALLEL SCREENSHOT GOES HERE](#)
+![parallel crayons](https://user-images.githubusercontent.com/1832043/65081491-5ad1c080-d969-11e9-9d43-be4a5f661ff1.png)
 
 These crayons are drawn sequentially:
 
-[SEQUENTIAL SCREENSHOT GOES HERE](#)
+![sequential crayons](https://user-images.githubusercontent.com/1832043/65081495-5e654780-d969-11e9-936b-e68fd1132b6b.png)
 
 You can run the tests all at once with `npm test`, but you may want to run them tier by tier instead: `npm run tier-1`, `npm run tier-2`, etc.
 
