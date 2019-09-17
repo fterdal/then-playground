@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon main",
-    "test": "mocha -w tests",
-    "tier-1": "mocha -w tests/tier-1.spec",
-    "tier-2": "mocha -w tests/tier-2.spec"
+    "test": "mocha -w tests; exit 0;",
+    "tier-1": "mocha -w tests/tier-1.spec; exit 0;",
+    "tier-2": "mocha -w tests/tier-2.spec; exit 0;",
+    "tier-3": "mocha -w tests/tier-3.spec; exit 0;",
+    "tier-4": "mocha -w tests/tier-4.spec; exit 0;",
+    "tier-5": "mocha -w tests/tier-5.spec; exit 0;"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +19,8 @@
     "chai": "^4.2.0",
     "chalk": "^2.4.2",
     "chalk-animation": "^1.6.0",
+    "lodash.debounce": "^4.0.8",
+    "lodash.shuffle": "^4.2.0",
     "mocha": "^6.2.0",
     "nodemon": "^1.19.1",
     "sinon": "^7.3.2",
