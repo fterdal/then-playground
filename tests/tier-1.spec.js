@@ -61,8 +61,8 @@ describe('Tier 1: Getting Started', () => {
       expect(handleError).to.be.calledWithMatch({
         message: 'oopsies, something broke',
       })
-      rainbow('Congratulations! Move on to Tier 2.')
       done()
+      rainbow('Congratulations! Move on to Tier 2.')
     }, 20)
   })
 })
