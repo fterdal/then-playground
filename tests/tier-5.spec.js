@@ -90,13 +90,13 @@ describe("Tier 5: Sequential Cont'd", () => {
           if (colorA.start < colorB.start) return -1
           return 1
         })
-        .forEach(({ start, end }, idx, array) => {
+        .forEach(({ start }, idx, array) => {
           if (!idx) return
           const prevDraw = array[idx - 1]
-          expect(start).to.be.greaterThan(prevDraw.end - 1)
+          expect(prevDraw.end - start).to.be.lessThan(10)
         })
       done()
       rainbow('Congratulations! You finished!')
-    }, 1050)
+    }, 1250)
   })
 })
