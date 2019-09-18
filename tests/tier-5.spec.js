@@ -11,7 +11,6 @@ const { YOUR_CODE_HERE } = require('../src/tier-5')
 const {
   crayonDraw,
   resetCrayonDraws,
-  crayonDraws,
   promisesShouldFulfill,
   promisesShouldReject,
   normalizeCrayonDraws,
@@ -68,16 +67,34 @@ describe("Tier 5: Sequential Cont'd", () => {
     }, 850)
   })
 
-  // TODO: Finish this one
-  it('accepts an arbitrary sequence of colors', done => {
+  it.only('accepts an arbitrary sequence of colors', done => {
     setColorSequence('random')
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
       expect(getColorSequence).callCount(1)
       expect(crayonDraw).callCount(5)
-      // const draws = normalizeCrayonDraws()
       // console.log(draws)
+
+      const draws = normalizeCrayonDraws()
+      console.log(
+        '\n\nsorted starts',
+        Object.values(draws).sort((colorA, colorB) => {
+          if (colorA.start < colorB.start) return -1
+          return 1
+        })
+      )
+
+      Object.values(draws)
+        .sort((colorA, colorB) => {
+          if (colorA.start < colorB.start) return -1
+          return 1
+        })
+        .forEach(({ start, end }, idx, array) => {
+          if (!idx) return
+          const prevDraw = array[idx - 1]
+          expect(start).to.be.greaterThan(prevDraw.end - 1)
+        })
       done()
       rainbow('Congratulations! You finished!')
     }, 1050)

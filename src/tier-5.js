@@ -17,25 +17,25 @@
 http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%205%3A%0ASequential%20Cont'd
 */
 
-const { crayonDraw, getColorSequence, handleError } = require('../utils')
+const { waitFor, crayonDraw, getColorSequence, handleError } = require('../utils')
 
 const YOUR_CODE_HERE = async () => {
   // AWAIT
-  // const sequence = await getColorSequence()
-  // for (let i = 0; i < sequence.length; i++) {
-  //   await crayonDraw(sequence[i])
-  // }
+  const sequence = await getColorSequence()
+  for (let i = 0; i < sequence.length; i++) {
+    await crayonDraw(sequence[i])
+  }
 
   // THEN
-  getColorSequence()
-    .then(sequence => {
-      return sequence.reduce((totalPromise, color) => {
-        return totalPromise.then(() => crayonDraw(color))
-      }, Promise.resolve())
-    })
-    .catch(err => {
-      handleError(err)
-    })
+  // getColorSequence()
+  //   .then(sequence => {
+  //     return sequence.reduce((totalPromise, color) => {
+  //       return totalPromise.then(() => crayonDraw(color))
+  //     }, Promise.resolve())
+  //   })
+  //   .catch(err => {
+  //     handleError(err)
+  //   })
 }
 
 module.exports = {
