@@ -24,17 +24,23 @@ http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%201%20%3A%0AGetting%20S
 
 const { waitFor, finished, handleError } = require('../utils')
 
-const YOUR_CODE_HERE = () => {
+const YOUR_CODE_HERE = async () => {
   // AWAIT
+  try {
+    await waitFor()
+    finished()
+  } catch (err) {
+    handleError(err)
+  }
 
   // THEN
-  waitFor()
-  .then(() => {
-    finished()
-  })
-  .catch((err) => {
-    handleError(err)
-  })
+  // waitFor()
+  // .then(() => {
+  //   finished()
+  // })
+  // .catch((err) => {
+  //   handleError(err)
+  // })
 
 }
 
