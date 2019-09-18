@@ -89,7 +89,26 @@ describe("Tier 5: Sequential Cont'd", () => {
           expect(prevDraw.end - start).to.be.lessThan(10)
         })
       done()
-      rainbow('Congratulations! You finished!')
     }, 1250)
+  })
+
+  it('calls handleError with any errors that occur & skip all following crayonDraws', done => {
+    setColorSequence(['blue', 'cyan', 'magenta', 'green'])
+    promisesShouldReject()
+    expect(crayonDraw).to.not.be.called
+    YOUR_CODE_HERE()
+    setTimeout(() => {
+      expect(crayonDraw).callCount(3)
+      expect(crayonDraw).to.be.calledWith('blue')
+      expect(crayonDraw).to.be.calledWith('cyan')
+      expect(crayonDraw).to.be.calledWith('magenta')
+      expect(crayonDraw).to.not.be.calledWith('green')
+      expect(handleError).to.be.called
+      expect(handleError).to.be.calledWithMatch({
+        message: 'Uh oh, the magenta crayon broke!',
+      })
+      done()
+      rainbow('Congratulations! You finished!')
+    }, 1050)
   })
 })

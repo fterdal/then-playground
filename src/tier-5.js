@@ -21,9 +21,13 @@ const { crayonDraw, getColorSequence, handleError } = require('../utils')
 
 const YOUR_CODE_HERE = async () => {
   // AWAIT
-  // const sequence = await getColorSequence()
-  // for (let i = 0; i < sequence.length; i++) {
-  //   await crayonDraw(sequence[i])
+  // try {
+  //   const sequence = await getColorSequence()
+  //   for (let i = 0; i < sequence.length; i++) {
+  //     await crayonDraw(sequence[i])
+  //   }
+  // } catch (err) {
+  //   handleError(err)
   // }
 
   // This approach doesn't work. Can you see why?
