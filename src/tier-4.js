@@ -17,26 +17,37 @@ http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%204%3A%0AParallel%20Con
 
 const { crayonDraw, getFirstRow, handleError } = require('../utils')
 
-const YOUR_CODE_HERE = () => {
+const YOUR_CODE_HERE = async () => {
   const allColors = ['blue', 'green', 'magenta', 'yellow', 'cyan']
 
   // AWAIT
+  try {
+    const firstRow = await getFirstRow()
+    const colorsDrawn = await Promise.all(
+      firstRow.map(color => crayonDraw(color))
+    )
+    const remainingColors = allColors.filter(
+      color => !colorsDrawn.includes(color)
+    )
+    await Promise.all(remainingColors.map(color => crayonDraw(color)))
+  } catch (err) {
+    handleError(err)
+  }
 
   // THEN
-  getFirstRow()
-    .then(firstRow => {
-      return Promise.all(firstRow.map(color => crayonDraw(color)))
-    })
-    .then(colorsDrawn => {
-      const remainingColors = allColors.filter(
-        color => !colorsDrawn.includes(color)
-      )
-      return Promise.all(remainingColors.map(color => crayonDraw(color)))
-    })
-    .catch(err => {
-      handleError(err)
-    })
-
+  // getFirstRow()
+  //   .then(firstRow => {
+  //     return Promise.all(firstRow.map(color => crayonDraw(color)))
+  //   })
+  //   .then(colorsDrawn => {
+  //     const remainingColors = allColors.filter(
+  //       color => !colorsDrawn.includes(color)
+  //     )
+  //     return Promise.all(remainingColors.map(color => crayonDraw(color)))
+  //   })
+  //   .catch(err => {
+  //     handleError(err)
+  //   })
 }
 
 module.exports = {
