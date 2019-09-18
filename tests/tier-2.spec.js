@@ -25,7 +25,7 @@ describe('Tier 2: Sequential', () => {
     promisesShouldFulfill()
   })
 
-  xit('calls crayonDraw four times', done => {
+  it('calls crayonDraw four times', done => {
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
@@ -34,7 +34,7 @@ describe('Tier 2: Sequential', () => {
     }, 850)
   })
 
-  xit('calls crayonDraw with blue, green, magenta, and yellow (in that order)', done => {
+  it('calls crayonDraw with blue, green, magenta, and yellow (in that order)', done => {
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
@@ -47,7 +47,7 @@ describe('Tier 2: Sequential', () => {
     }, 850)
   })
 
-  xit('successive calls to crayonDraw only after the previous one resolves', done => {
+  it('successive calls to crayonDraw only after the previous one resolves', done => {
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
@@ -61,7 +61,7 @@ describe('Tier 2: Sequential', () => {
     }, 850)
   })
 
-  xit('calls handleError with any errors that occur & skip all following crayonDraws', done => {
+  it('calls handleError with any errors that occur & skip all following crayonDraws', done => {
     expect(crayonDraw).to.not.be.called
     promisesShouldReject()
     YOUR_CODE_HERE()

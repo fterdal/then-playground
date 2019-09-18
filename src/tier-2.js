@@ -22,7 +22,19 @@ const YOUR_CODE_HERE = async () => {
   // AWAIT
 
   // THEN
-
+  crayonDraw('blue')
+    .then(() => {
+      return crayonDraw('green')
+    })
+    .then(() => {
+      return crayonDraw('magenta')
+    })
+    .then(() => {
+      return crayonDraw('yellow')
+    })
+    .catch((err) => {
+      handleError(err)
+    })
 }
 
 module.exports = {
