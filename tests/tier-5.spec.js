@@ -11,7 +11,6 @@ const { YOUR_CODE_HERE } = require('../src/tier-5')
 const {
   crayonDraw,
   resetCrayonDraws,
-  crayonDraws,
   promisesShouldFulfill,
   promisesShouldReject,
   normalizeCrayonDraws,
@@ -68,7 +67,6 @@ describe("Tier 5: Sequential Cont'd", () => {
     }, 850)
   })
 
-  // TODO: Finish this one
   xit('accepts an arbitrary sequence of colors', done => {
     setColorSequence('random')
     expect(crayonDraw).to.not.be.called
@@ -76,8 +74,39 @@ describe("Tier 5: Sequential Cont'd", () => {
     setTimeout(() => {
       expect(getColorSequence).callCount(1)
       expect(crayonDraw).callCount(5)
-      // const draws = normalizeCrayonDraws()
+      const draws = normalizeCrayonDraws()
+      // Uncomment this console.log to see the start and end of each crayon draw
       // console.log(draws)
+
+      Object.values(draws)
+        .sort((colorA, colorB) => {
+          if (colorA.start < colorB.start) return -1
+          return 1
+        })
+        .forEach(({ start }, idx, array) => {
+          if (!idx) return
+          const prevDraw = array[idx - 1]
+          expect(prevDraw.end - start).to.be.lessThan(10)
+        })
+      done()
+    }, 1250)
+  })
+
+  xit('calls handleError with any errors that occur & skip all following crayonDraws', done => {
+    setColorSequence(['blue', 'cyan', 'magenta', 'green'])
+    promisesShouldReject()
+    expect(crayonDraw).to.not.be.called
+    YOUR_CODE_HERE()
+    setTimeout(() => {
+      expect(crayonDraw).callCount(3)
+      expect(crayonDraw).to.be.calledWith('blue')
+      expect(crayonDraw).to.be.calledWith('cyan')
+      expect(crayonDraw).to.be.calledWith('magenta')
+      expect(crayonDraw).to.not.be.calledWith('green')
+      expect(handleError).to.be.called
+      expect(handleError).to.be.calledWithMatch({
+        message: 'Uh oh, the magenta crayon broke!',
+      })
       done()
       rainbow('Congratulations! You finished!')
     }, 1050)
