@@ -17,15 +17,25 @@
 http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%205%3A%0ASequential%20Cont'd
 */
 
-const { fulfillAfterMs, crayonDraw, getColorSequence, handleError } = require('../utils')
+const {
+  fulfillAfterMs,
+  crayonDraw,
+  getColorSequence,
+  handleError,
+} = require('../utils')
 
 const YOUR_CODE_HERE = async () => {
   // AWAIT
   const sequence = await getColorSequence()
   for (let i = 0; i < sequence.length; i++) {
-    await fulfillAfterMs(200)
-    crayonDraw(sequence[i])
+    // await fulfillAfterMs(200)
+    await crayonDraw(sequence[i])
   }
+
+  // This approach doesn't work. Can you see why?
+  // sequence.forEach(async color => {
+  //   await crayonDraw(color)
+  // })
 
   // THEN
   // getColorSequence()
