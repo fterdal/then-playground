@@ -20,7 +20,6 @@ const {
 describe('Tier 1: Getting Started', () => {
   afterEach(() => {
     sinon.reset()
-    // sinon.restore()
     promisesShouldFulfill()
   })
 
