@@ -27,6 +27,16 @@ const YOUR_CODE_HERE = async () => {
   }
 
   // THEN
+  // Promise.all([crayonDraw('blue'), crayonDraw('green')])
+  //   .then(() => {
+  //     return Promise.all([crayonDraw('magenta'), crayonDraw('yellow')])
+  //   })
+  //   .then(() => {
+  //     return crayonDraw('cyan')
+  //   })
+  //   .catch(err => {
+  //     handleError(err)
+  //   })
 }
 
 module.exports = {
