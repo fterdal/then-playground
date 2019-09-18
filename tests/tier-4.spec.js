@@ -45,7 +45,7 @@ describe("Tier 4: Parallel Cont'd", () => {
     If getFirstRow() returned [], we'd see
     blue yellow green magenta cyan (in any order)
   */
-  xit('calls crayonDraw five times and getFirstRow once', done => {
+  it('calls crayonDraw five times and getFirstRow once', done => {
     setFirstRow(['green', 'magenta', 'yellow'])
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
@@ -57,7 +57,7 @@ describe("Tier 4: Parallel Cont'd", () => {
     }, 750)
   })
 
-  xit('draws all the colors in the first row concurrently', done => {
+  it('draws all the colors in the first row concurrently', done => {
     const rows = setFirstRow(['blue', 'cyan', 'magenta'])
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
@@ -72,7 +72,7 @@ describe("Tier 4: Parallel Cont'd", () => {
     }, 750)
   })
 
-  xit('draws all the colors in the second row concurrently, after all the first row colors', done => {
+  it('draws all the colors in the second row concurrently, after all the first row colors', done => {
     const rows = setFirstRow(['yellow', 'cyan'])
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
@@ -93,7 +93,7 @@ describe("Tier 4: Parallel Cont'd", () => {
     }, 750)
   })
 
-  xit('accepts an arbitrary array of colors for the first row', done => {
+  it('accepts an arbitrary array of colors for the first row', done => {
     const rows = setFirstRow('random')
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
@@ -119,7 +119,7 @@ describe("Tier 4: Parallel Cont'd", () => {
     }, 750)
   })
 
-  xit('calls handleError with any errors that occur & skip all following crayonDraws', done => {
+  it('calls handleError with any errors that occur & skip all following crayonDraws', done => {
     setFirstRow(['blue', 'cyan', 'magenta'])
     promisesShouldReject()
     expect(crayonDraw).to.not.be.called

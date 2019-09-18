@@ -23,6 +23,19 @@ const YOUR_CODE_HERE = () => {
   // AWAIT
 
   // THEN
+  getFirstRow()
+    .then(firstRow => {
+      return Promise.all(firstRow.map(color => crayonDraw(color)))
+    })
+    .then(colorsDrawn => {
+      const remainingColors = allColors.filter(
+        color => !colorsDrawn.includes(color)
+      )
+      return Promise.all(remainingColors.map(color => crayonDraw(color)))
+    })
+    .catch(err => {
+      handleError(err)
+    })
 
 }
 
