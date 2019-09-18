@@ -17,7 +17,7 @@ http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%204%3A%0AParallel%20Con
 
 const { crayonDraw, getFirstRow, handleError } = require('../utils')
 
-const YOUR_CODE_HERE = () => {
+const YOUR_CODE_HERE = async () => {
   const allColors = ['blue', 'green', 'magenta', 'yellow', 'cyan']
 
   // AWAIT
