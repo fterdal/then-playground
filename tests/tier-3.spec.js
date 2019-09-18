@@ -11,7 +11,6 @@ const { YOUR_CODE_HERE } = require('../src/tier-3')
 const {
   crayonDraw,
   handleError,
-  crayonDraws,
   resetCrayonDraws,
   promisesShouldFulfill,
   promisesShouldReject,
