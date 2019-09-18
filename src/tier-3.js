@@ -19,22 +19,14 @@ const { crayonDraw, handleError } = require('../utils')
 const YOUR_CODE_HERE = async () => {
   // AWAIT
   try {
-    const b = crayonDraw('blue')
-    const g = crayonDraw('green')
-    await b
-    await g
-    const m = crayonDraw('magenta')
-    const y = crayonDraw('yellow')
-    await m
-    await y
-    const c = crayonDraw('cyan')
-    await c
+    await Promise.all([crayonDraw('blue'), crayonDraw('green')])
+    await Promise.all([crayonDraw('magenta'), crayonDraw('yellow')])
+    await crayonDraw('cyan')
   } catch (err) {
     handleError(err)
   }
 
   // THEN
-
 }
 
 module.exports = {
