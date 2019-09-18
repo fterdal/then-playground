@@ -20,21 +20,29 @@ const { crayonDraw, handleError } = require('../utils')
 
 const YOUR_CODE_HERE = async () => {
   // AWAIT
+  try {
+    await crayonDraw('blue')
+    await crayonDraw('green')
+    await crayonDraw('magenta')
+    await crayonDraw('yellow')
+  } catch (err) {
+    handleError(err)
+  }
 
   // THEN
-  crayonDraw('blue')
-    .then(() => {
-      return crayonDraw('green')
-    })
-    .then(() => {
-      return crayonDraw('magenta')
-    })
-    .then(() => {
-      return crayonDraw('yellow')
-    })
-    .catch((err) => {
-      handleError(err)
-    })
+  // crayonDraw('blue')
+  //   .then(() => {
+  //     return crayonDraw('green')
+  //   })
+  //   .then(() => {
+  //     return crayonDraw('magenta')
+  //   })
+  //   .then(() => {
+  //     return crayonDraw('yellow')
+  //   })
+  //   .catch(err => {
+  //     handleError(err)
+  //   })
 }
 
 module.exports = {
