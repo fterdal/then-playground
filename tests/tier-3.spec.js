@@ -11,7 +11,6 @@ const { YOUR_CODE_HERE } = require('../src/tier-3')
 const {
   crayonDraw,
   handleError,
-  crayonDraws,
   resetCrayonDraws,
   promisesShouldFulfill,
   promisesShouldReject,
@@ -25,7 +24,7 @@ describe('Tier 3: Parallel', () => {
     promisesShouldFulfill()
   })
 
-  xit('calls crayonDraw five times', done => {
+  it('calls crayonDraw five times', done => {
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
@@ -34,7 +33,7 @@ describe('Tier 3: Parallel', () => {
     }, 1050)
   })
 
-  xit('calls crayonDraw with blue, green, magenta, yellow, and cyan (once each)', done => {
+  it('calls crayonDraw with blue, green, magenta, yellow, and cyan (once each)', done => {
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
@@ -57,7 +56,7 @@ describe('Tier 3: Parallel', () => {
    * Note that green may resolve before blue and yellow before magenta. It's
    * usually not possible to predict which async operation will finish first.
    */
-  xit('calls crayonDraw with blue & green concurrently then magenta & yellow concurrently then cyan last', done => {
+  it('calls crayonDraw with blue & green concurrently then magenta & yellow concurrently then cyan last', done => {
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
@@ -72,7 +71,7 @@ describe('Tier 3: Parallel', () => {
     }, 750)
   })
 
-  xit('calls handleError with any errors that occur & skip all following crayonDraws', done => {
+  it('calls handleError with any errors that occur & skip all following crayonDraws', done => {
     expect(crayonDraw).to.not.be.called
     promisesShouldReject()
     YOUR_CODE_HERE()

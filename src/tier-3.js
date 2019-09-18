@@ -16,8 +16,22 @@ http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%203%3A%0AParallel
 
 const { crayonDraw, handleError } = require('../utils')
 
-const YOUR_CODE_HERE = () => {
+const YOUR_CODE_HERE = async () => {
   // AWAIT
+  try {
+    const b = crayonDraw('blue')
+    const g = crayonDraw('green')
+    await b
+    await g
+    const m = crayonDraw('magenta')
+    const y = crayonDraw('yellow')
+    await m
+    await y
+    const c = crayonDraw('cyan')
+    await c
+  } catch (err) {
+    handleError(err)
+  }
 
   // THEN
 
