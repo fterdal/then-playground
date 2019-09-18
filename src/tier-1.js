@@ -28,6 +28,13 @@ const YOUR_CODE_HERE = () => {
   // AWAIT
 
   // THEN
+  waitFor()
+  .then(() => {
+    finished()
+  })
+  .catch((err) => {
+    handleError(err)
+  })
 
 }
 
