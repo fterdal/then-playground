@@ -140,11 +140,10 @@ const crayonDraw = (color = 'white') => {
     }
     process.stdout.write(logColor(color) + ' ')
     newLine()
-    const crayonDraw = crayonDraws.find(draw => draw.id === promiseId)
-    if (crayonDraw) {
-      crayonDraw.end = Date.now()
+    const finishedDraw = crayonDraws.find(draw => draw.id === promiseId)
+    if (finishedDraw) {
+      finishedDraw.end = Date.now()
     }
-    // crayonDraws.find(draw => draw.id === promiseId).end = Date.now()
     return color
   })
 }
