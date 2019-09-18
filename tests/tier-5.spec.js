@@ -67,23 +67,16 @@ describe("Tier 5: Sequential Cont'd", () => {
     }, 850)
   })
 
-  it.only('accepts an arbitrary sequence of colors', done => {
+  it('accepts an arbitrary sequence of colors', done => {
     setColorSequence('random')
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
       expect(getColorSequence).callCount(1)
       expect(crayonDraw).callCount(5)
-      // console.log(draws)
-
       const draws = normalizeCrayonDraws()
-      console.log(
-        '\n\nsorted starts',
-        Object.values(draws).sort((colorA, colorB) => {
-          if (colorA.start < colorB.start) return -1
-          return 1
-        })
-      )
+      // Uncomment this console.log to see the start and end of each crayon draw
+      // console.log(draws)
 
       Object.values(draws)
         .sort((colorA, colorB) => {

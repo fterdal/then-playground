@@ -17,20 +17,14 @@
 http://patorjk.com/software/taag/#p=display&f=Big&t=Tier%205%3A%0ASequential%20Cont'd
 */
 
-const {
-  fulfillAfterMs,
-  crayonDraw,
-  getColorSequence,
-  handleError,
-} = require('../utils')
+const { crayonDraw, getColorSequence, handleError } = require('../utils')
 
 const YOUR_CODE_HERE = async () => {
   // AWAIT
-  const sequence = await getColorSequence()
-  for (let i = 0; i < sequence.length; i++) {
-    // await fulfillAfterMs(200)
-    await crayonDraw(sequence[i])
-  }
+  // const sequence = await getColorSequence()
+  // for (let i = 0; i < sequence.length; i++) {
+  //   await crayonDraw(sequence[i])
+  // }
 
   // This approach doesn't work. Can you see why?
   // sequence.forEach(async color => {
@@ -38,15 +32,15 @@ const YOUR_CODE_HERE = async () => {
   // })
 
   // THEN
-  // getColorSequence()
-  //   .then(sequence => {
-  //     return sequence.reduce((totalPromise, color) => {
-  //       return totalPromise.then(() => crayonDraw(color))
-  //     }, Promise.resolve())
-  //   })
-  //   .catch(err => {
-  //     handleError(err)
-  //   })
+  getColorSequence()
+    .then(sequence => {
+      return sequence.reduce((totalPromise, color) => {
+        return totalPromise.then(() => crayonDraw(color))
+      }, Promise.resolve())
+    })
+    .catch(err => {
+      handleError(err)
+    })
 }
 
 module.exports = {
