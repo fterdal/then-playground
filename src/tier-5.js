@@ -23,11 +23,15 @@ const YOUR_CODE_HERE = async () => {
   // AWAIT
 
   // THEN
-  getColorSequence().then(sequence => {
-    return sequence.reduce((totalPromise, color) => {
-      return totalPromise.then(() => crayonDraw(color))
-    }, Promise.resolve())
-  })
+  getColorSequence()
+    .then(sequence => {
+      return sequence.reduce((totalPromise, color) => {
+        return totalPromise.then(() => crayonDraw(color))
+      }, Promise.resolve())
+    })
+    .catch(err => {
+      handleError(err)
+    })
 }
 
 module.exports = {
