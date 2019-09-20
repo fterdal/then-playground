@@ -26,11 +26,13 @@ const YOUR_CODE_HERE = async () => {
   getColorSequence()
   .then((sequence) => {
     console.log('sequence', sequence)
-    sequence.forEach(() => {
-      crayonDraw()
-    })
+    sequence.reduce((totalPromise, color) => {
+      return crayonDraw(color)
+    }, Promise.resolve())
+    // sequence.forEach((color) => {
+    //   crayonDraw(color)
+    // })
   })
-
 }
 
 module.exports = {
