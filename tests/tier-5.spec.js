@@ -52,14 +52,14 @@ describe("Tier 5: Sequential Cont'd", () => {
     }, 850)
   })
 
-  xit('does not call crayonDraw until the previous color is finished being drawn', done => {
+  it('does not call crayonDraw until the previous color is finished being drawn', done => {
     setColorSequence(['cyan', 'green', 'yellow'])
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
     setTimeout(() => {
       const draws = normalizeCrayonDraws()
       // Uncomment this console.log to see the start and end of each crayon draw
-      // console.log(draws)
+      console.log(draws)
       const { cyan, green, yellow } = draws
       expect(getColorSequence).callCount(1)
       expect(crayonDraw).callCount(3)
