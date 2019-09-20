@@ -21,17 +21,21 @@ const { crayonDraw, getColorSequence, handleError } = require('../utils')
 
 const YOUR_CODE_HERE = async () => {
   // AWAIT
+  const sequence = await getColorSequence()
+  sequence.forEach(() => {
+    crayonDraw()
+  })
 
   // THEN
-  getColorSequence()
-    .then(sequence => {
-      return sequence.reduce((totalPromise, color) => {
-        return totalPromise.then(() => crayonDraw(color))
-      }, Promise.resolve())
-    })
-    .catch(err => {
-      handleError(err)
-    })
+  // getColorSequence()
+  //   .then(sequence => {
+  //     return sequence.reduce((totalPromise, color) => {
+  //       return totalPromise.then(() => crayonDraw(color))
+  //     }, Promise.resolve())
+  //   })
+  //   .catch(err => {
+  //     handleError(err)
+  //   })
 }
 
 module.exports = {

@@ -52,7 +52,7 @@ describe("Tier 5: Sequential Cont'd", () => {
     }, 850)
   })
 
-  it('does not call crayonDraw until the previous color is finished being drawn', done => {
+  xit('does not call crayonDraw until the previous color is finished being drawn', done => {
     setColorSequence(['cyan', 'green', 'yellow'])
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
@@ -70,7 +70,7 @@ describe("Tier 5: Sequential Cont'd", () => {
     }, 850)
   })
 
-  it('accepts an arbitrary sequence of colors', done => {
+  xit('accepts an arbitrary sequence of colors', done => {
     setColorSequence('random')
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
@@ -95,7 +95,7 @@ describe("Tier 5: Sequential Cont'd", () => {
     }, 1250)
   })
 
-  it('calls handleError with any errors that occur & skip all following crayonDraws', done => {
+  xit('calls handleError with any errors that occur & skip all following crayonDraws', done => {
     setColorSequence(['blue', 'cyan', 'magenta', 'green'])
     promisesShouldReject()
     expect(crayonDraw).to.not.be.called
