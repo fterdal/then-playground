@@ -59,7 +59,7 @@ describe("Tier 5: Sequential Cont'd", () => {
     setTimeout(() => {
       const draws = normalizeCrayonDraws()
       // Uncomment this console.log to see the start and end of each crayon draw
-      console.log(draws)
+      // console.log(draws)
       const { cyan, green, yellow } = draws
       expect(getColorSequence).callCount(1)
       expect(crayonDraw).callCount(3)
@@ -70,7 +70,7 @@ describe("Tier 5: Sequential Cont'd", () => {
     }, 850)
   })
 
-  xit('accepts an arbitrary sequence of colors', done => {
+  it('accepts an arbitrary sequence of colors', done => {
     setColorSequence('random')
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
@@ -95,7 +95,7 @@ describe("Tier 5: Sequential Cont'd", () => {
     }, 1250)
   })
 
-  xit('calls handleError with any errors that occur & skip all following crayonDraws', done => {
+  it('calls handleError with any errors that occur & skip all following crayonDraws', done => {
     setColorSequence(['blue', 'cyan', 'magenta', 'green'])
     promisesShouldReject()
     expect(crayonDraw).to.not.be.called
