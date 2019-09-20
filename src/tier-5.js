@@ -23,15 +23,10 @@ const YOUR_CODE_HERE = async () => {
   // AWAIT
 
   // THEN
-  getColorSequence()
-  .then((sequence) => {
-    console.log('sequence', sequence)
-    sequence.reduce((totalPromise, color) => {
-      return crayonDraw(color)
+  getColorSequence().then(sequence => {
+    return sequence.reduce((totalPromise, color) => {
+      return totalPromise.then(() => crayonDraw(color))
     }, Promise.resolve())
-    // sequence.forEach((color) => {
-    //   crayonDraw(color)
-    // })
   })
 }
 
