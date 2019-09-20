@@ -23,6 +23,13 @@ const YOUR_CODE_HERE = async () => {
   // AWAIT
 
   // THEN
+  getColorSequence()
+  .then((sequence) => {
+    console.log('sequence', sequence)
+    sequence.forEach(() => {
+      crayonDraw()
+    })
+  })
 
 }
 

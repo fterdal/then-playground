@@ -30,7 +30,7 @@ describe("Tier 5: Sequential Cont'd", () => {
   /*
     For this tier, we need to draw a sequence of colors.
   */
-  xit('calls crayonDraw 2 times (when the sequence has 2 colors) and getColorSequence once', done => {
+  it('calls crayonDraw 2 times (when the sequence has 2 colors) and getColorSequence once', done => {
     setColorSequence(['green', 'magenta'])
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
@@ -41,7 +41,7 @@ describe("Tier 5: Sequential Cont'd", () => {
     }, 650)
   })
 
-  xit('calls crayonDraw 3 times (when the sequence has 3 colors) and getColorSequence once', done => {
+  it('calls crayonDraw 3 times (when the sequence has 3 colors) and getColorSequence once', done => {
     setColorSequence(['magenta', 'green', 'blue'])
     expect(crayonDraw).to.not.be.called
     YOUR_CODE_HERE()
